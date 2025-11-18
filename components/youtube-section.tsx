@@ -24,11 +24,11 @@ const YouTubeSection = () => {
           <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-primary" />
-              <span>50K+ subscribers</span>
+              <span>70+ subscribers</span>
             </div>
             <div className="flex items-center gap-2">
               <Play className="w-4 h-4 text-primary" />
-              <span>100+ tutorials</span>
+              <span>10+ tutorials</span>
             </div>
           </div>
         </div>
