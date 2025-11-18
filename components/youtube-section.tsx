@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Youtube, TrendingUp } from "lucide-react";
 import { youtubeVideos } from "@/lib/data";
+import Link from "next/link";
 
 const YouTubeSection = () => {
   return (
@@ -53,13 +54,13 @@ const YouTubeSection = () => {
                     className="rounded-full w-16 h-16"
                     asChild
                   >
-                    <a
+                    <Link
                       href={video.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Play className="w-6 h-6" />
-                    </a>
+                    </Link>
                   </Button>
                 </div>
                 <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm font-medium">
@@ -87,14 +88,14 @@ const YouTubeSection = () => {
 
         <div className="text-center">
           <Button variant="hero" size="lg" asChild>
-            <a
+            <Link
               href="https://youtube.com/@adevtutorials"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Youtube className="w-5 h-5" />
               Subscribe for More
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
