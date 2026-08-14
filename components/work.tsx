@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+import { GithubIcon } from "@/components/brand-icons";
 
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -107,7 +109,7 @@ export function Work() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github />
+                        <GithubIcon />
                         Code
                         <span className="sr-only">
                           {" "}

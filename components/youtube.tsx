@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Play, Users, Youtube } from "lucide-react";
+import { Play, Users } from "lucide-react";
+
+import { YoutubeIcon } from "@/components/brand-icons";
 
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -33,7 +35,7 @@ export function YouTube() {
               {youtubeChannel.videoCount} tutorials
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-card">
-              <Youtube className="size-4 text-[#FF0000]" aria-hidden="true" />
+              <YoutubeIcon className="size-4 text-[#FF0000]" />
               {youtubeChannel.handle}
             </span>
           </div>
@@ -106,7 +108,7 @@ export function YouTube() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Youtube className="transition-transform duration-200 group-hover:scale-110" />
+              <YoutubeIcon className="transition-transform duration-200 group-hover:scale-110" />
               Subscribe for more
             </Link>
           </Button>

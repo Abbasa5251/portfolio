@@ -1,30 +1,43 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
-import {
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  Twitter,
-  Youtube,
-  type LucideIcon,
-} from "lucide-react";
+import { Mail } from "lucide-react";
 
+import {
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  XIcon,
+  YoutubeIcon,
+} from "@/components/brand-icons";
 import { site, socials } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-type Entry = { label: string; href: string; Icon: LucideIcon };
+/**
+ * Icons come from two places now — lucide for `Mail`, local SVGs for the brand
+ * marks — so the type is the loosest thing both satisfy. Narrowing the return to
+ * ReactElement rejects lucide's forwardRef components, which return ReactNode.
+ */
+type Entry = {
+  label: string;
+  href: string;
+  Icon: (props: { className?: string }) => ReactNode;
+};
 
 /** Only links with a URL in site-config are rendered. */
 function entries(): Entry[] {
   const list: Entry[] = [
-    { label: "GitHub", href: socials.github, Icon: Github },
-    { label: "LinkedIn", href: socials.linkedin, Icon: Linkedin },
-    { label: "YouTube", href: socials.youtube, Icon: Youtube },
+    { label: "GitHub", href: socials.github, Icon: GithubIcon },
+    { label: "LinkedIn", href: socials.linkedin, Icon: LinkedinIcon },
+    { label: "YouTube", href: socials.youtube, Icon: YoutubeIcon },
   ];
   if (socials.twitter)
-    list.push({ label: "X / Twitter", href: socials.twitter, Icon: Twitter });
+    list.push({ label: "X / Twitter", href: socials.twitter, Icon: XIcon });
   if (socials.instagram)
-    list.push({ label: "Instagram", href: socials.instagram, Icon: Instagram });
+    list.push({
+      label: "Instagram",
+      href: socials.instagram,
+      Icon: InstagramIcon,
+    });
   list.push({ label: "Email", href: `mailto:${site.email}`, Icon: Mail });
   return list;
 }
@@ -58,7 +71,7 @@ export function SocialLinks({
                   : "border-ink/10 bg-white/80 text-ink-soft hover:border-rose/40 hover:bg-white hover:text-rose-ink hover:shadow-card"
               )}
             >
-              <Icon className="size-[1.15rem]" aria-hidden="true" />
+              <Icon className="size-[1.05rem]" />
               <span className="sr-only">
                 {label}
                 {external ? " (opens in a new tab)" : ""}
