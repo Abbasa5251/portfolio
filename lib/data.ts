@@ -1,45 +1,56 @@
-import { Project, YouTubeVideo, TechCategory } from './types';
+import { Project, YouTubeVideo } from "./types";
 
 export const projects: Project[] = [
   {
     id: 1,
     title: "ADev Zoom",
+    category: "Video & Collaboration",
     description:
-      "A collaborative video conferencing application with real-time updates and team collaboration features.",
-    tech: ["Next.js", "TypeScript", "Stream.io", "TailwindCSS", "Clerk"],
+      "A collaborative video conferencing app with real-time rooms, scheduled meetings and recordings.",
+    tech: ["Next.js", "TypeScript", "Stream.io", "Tailwind CSS", "Clerk"],
     liveUrl: "https://zoom-clone-chi-swart.vercel.app/",
     githubUrl: "https://github.com/Abbasa5251/zoom-clone",
-    image: "/zoom-clone.png",
+    image: "/zoom-clone.webp",
+    tone: "lavender",
+    featured: true,
   },
   {
     id: 2,
     title: "ADev Devsearch",
+    category: "Developer Community",
     description:
-      "A collaborative platform for developers to showcase projects and connect with other developers.",
+      "A platform where developers publish projects, collect peer reviews and connect with each other.",
     tech: ["Python", "Django", "PostgreSQL", "DRF", "JWT", "AWS S3"],
     liveUrl: "",
     githubUrl: "https://github.com/Abbasa5251/adev-devsearch",
-    image: "/devsearch.png",
+    image: "/devsearch.webp",
+    tone: "blush",
   },
   {
     id: 3,
-    title: "AI-Powered Resume Scanner",
-    description: "AI-powered resume scanner, with job role suggestions.",
+    title: "AI Resume Scanner",
+    category: "AI & Automation",
+    description:
+      "Parses a resume, scores it against a job description and suggests roles that actually fit.",
     tech: ["Streamlit", "Python", "OpenAI API"],
     liveUrl: "",
     githubUrl: "https://github.com/Abbasa5251/ai-resume-scanner",
-    image: "/AI-resume-scanner.png",
+    image: "/AI-resume-scanner.webp",
+    tone: "mint",
   },
 ];
 
-// This will be dynamically fetched from YouTube API
+/**
+ * Hand-maintained for now. To pull these live, fetch the uploads playlist from
+ * the YouTube Data API v3 in a server component and cache the result — the key
+ * already lives in `.env` as `YOUTUBE_API_KEY`.
+ */
 export const youtubeVideos: YouTubeVideo[] = [
   {
     id: 1,
-    title:
-      "Getting Started with Python for Beginners - Installing Python on Windows | ADev Tutorials",
+    title: "Getting Started with Python for Beginners — Installing Python",
     description:
-      "If you want to start learning python from scratch, this is the right place. You will learn how to install latest version of Python i.e Python 3.9.0 on windows 10 and also how to run python from command prompt",
+      "Start learning Python from scratch. Install the latest version of Python on Windows and run your first script from the command prompt.",
     views: "195 views",
     duration: "3:21",
     thumbnail:
@@ -48,9 +59,9 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     id: 2,
-    title: "Download Instagram Profile Pictures using Python | ADev Tutorials",
+    title: "Download Instagram Profile Pictures using Python",
     description:
-      "In this video I will show you how to download Instagram Profile Picture for any user by giving Instagram username using python. we will make use of python's Requests module for the same.",
+      "Download the profile picture of any Instagram user from their username, using Python's Requests module.",
     views: "596 views",
     duration: "10:06",
     thumbnail:
@@ -59,9 +70,9 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     id: 3,
-    title: "Getting started with Django | ADev Tutorials",
+    title: "Getting started with Django",
     description:
-      "Welcome to our Django tutorial! In this video, we'll guide you through the process of getting started with Django, a powerful Python web framework designed for rapid development and clean, pragmatic design. Whether you're a beginner in web development or an experienced developer looking to explore Django, this tutorial has got you covered.",
+      "A walkthrough of getting up and running with Django, the Python web framework built for rapid, clean development.",
     views: "99 views",
     duration: "5:29",
     thumbnail:
@@ -69,77 +80,3 @@ export const youtubeVideos: YouTubeVideo[] = [
     url: "https://www.youtube.com/watch?v=oQt9yRXn_d4",
   },
 ];
-
-export const techCategories: TechCategory[] = [
-  {
-    title: 'Frontend',
-    skills: [
-      { name: 'React' },
-      { name: 'Next.js' },
-      { name: 'Vue.js' },
-      { name: 'TypeScript' },
-      { name: 'Tailwind CSS' },
-      { name: 'Framer Motion' },
-    ],
-  },
-  {
-    title: 'Backend',
-    skills: [
-      { name: 'Node.js' },
-      { name: 'Express' },
-      { name: 'Python' },
-      { name: 'Django' },
-      { name: 'Fast API' },
-      { name: 'REST APIs' },
-    ],
-  },
-  {
-    title: 'Mobile',
-    skills: [
-      { name: 'React Native' },
-      { name: 'Flutter' },
-      { name: 'Expo' },
-      { name: 'iOS' },
-      { name: 'Android' },
-    ],
-  },
-  {
-    title: 'Database',
-    skills: [
-      { name: 'PostgreSQL' },
-      { name: 'MongoDB' },
-      { name: 'Redis' },
-      { name: 'Prisma' },
-      { name: 'Supabase' },
-      { name: 'Firebase' },
-    ],
-  },
-  {
-    title: 'DevOps',
-    skills: [
-      { name: 'AWS' },
-      { name: 'Docker' },
-      { name: 'Kubernetes' },
-      { name: 'CI/CD' },
-      { name: 'Vercel' },
-      { name: 'Netlify' },
-    ],
-  },
-  {
-    title: 'Design',
-    skills: [
-      { name: 'Figma' },
-      { name: 'Adobe XD' },
-      { name: 'UI/UX' },
-      { name: 'Responsive Design' },
-      { name: 'Design Systems' },
-    ],
-  },
-];
-
-export const links = {
-  github: "https://github.com/Abbasa5251",
-  linkdin: "https://www.linkedin.com/in/abbasanandwala/",
-  youtube: "https://www.youtube.com/@adevtutorials",
-  email: "abbasa5251@hotmail.com"
-}

@@ -1,273 +1,302 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* ==========================================================================
+   Design tokens — "Warm Studio"
+   A soft pastel band system: cream base, blush / lavender / mint / butter
+   section bands, deep-navy ink for type, rose for calls to action.
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+   Every foreground/background pair below was checked for WCAG AA:
+     ink   #16205C  on any band  → 12.7:1+   (headings + body)
+     body  #565B7E  on any band  →  5.1:1+   (body copy)
+     rose-ink #C2143C on any band →  5.1:1+  (small eyebrow labels)
+     white on rose #E11D48       →  4.70:1   (primary button)
+     white on navy #1B2C6B       → 12.97:1   (secondary button)
+     cream on navy #111A47       → 15.81:1   (footer)
+   Do not use `rose` for small text — it only clears AA for large display type.
+   ========================================================================== */
+
+@theme {
+  /* --- Brand ramp ------------------------------------------------------- */
+  --color-cream: #fff8f2;
+  --color-cream-deep: #fdf1e7;
+  --color-blush: #fdebf1;
+  --color-blush-deep: #fbdce7;
+  --color-lavender: #edeafb;
+  --color-lavender-deep: #e2ddf8;
+  --color-mint: #e3f5e9;
+  --color-butter: #fdf1d3;
+  --color-peach: #fee9de;
+
+  --color-ink: #16205c;
+  --color-ink-soft: #2b3670;
+  --color-body: #565b7e;
+
+  --color-rose: #e11d48;
+  --color-rose-ink: #c2143c;
+  --color-rose-soft: #ff8fab;
+  --color-rose-wash: #ffe4ec;
+
+  --color-navy: #111a47;
+  --color-navy-btn: #1b2c6b;
+  --color-on-navy: #c9cbe8;
+
+  /* --- Semantic aliases (shadcn/ui contract) ---------------------------- */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-ink);
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-ink);
+  --color-popover: #ffffff;
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-rose);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--color-lavender);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted: #f4f1f6;
+  --color-muted-foreground: var(--color-body);
+  --color-accent: var(--color-blush);
+  --color-accent-foreground: var(--color-ink);
+  --color-destructive: #c2143c;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #efe3e9;
+  --color-input: #e7dfe6;
+  --color-ring: var(--color-rose);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* --- Radii ------------------------------------------------------------ */
+  --radius-card: 1.25rem;
+
+  /* --- Elevation — warm-tinted, never neutral grey ---------------------- */
+  --shadow-card: 0 2px 4px -1px rgb(22 32 92 / 0.04),
+    0 12px 28px -8px rgb(22 32 92 / 0.1);
+  --shadow-lift: 0 4px 8px -2px rgb(22 32 92 / 0.06),
+    0 24px 48px -12px rgb(22 32 92 / 0.16);
+  --shadow-rose: 0 8px 24px -6px rgb(225 29 72 / 0.4);
+  --shadow-navy: 0 8px 24px -6px rgb(17 26 71 / 0.32);
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-float: float 7s var(--ease-out-soft) infinite;
+  --animate-float-slow: float 11s var(--ease-out-soft) infinite;
+  --animate-drift: drift 14s ease-in-out infinite;
+  --animate-blink: blink 1.1s step-end infinite;
+  --animate-wave: wave 2.6s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-sparkle: sparkle 3.2s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(18px, -22px) scale(1.05);
+    }
+    66% {
+      transform: translate(-14px, 14px) scale(0.97);
+    }
+  }
+  /* A waving hand should pivot at the wrist, not drift upwards. */
+  @keyframes wave {
+    0%,
+    60%,
+    100% {
+      transform: rotate(0deg);
+    }
+    15%,
+    45% {
+      transform: rotate(16deg);
+    }
+    30% {
+      transform: rotate(-10deg);
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes sparkle {
+    0%,
+    100% {
+      opacity: 0.25;
+      transform: scale(0.8) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15) rotate(25deg);
+    }
+  }
 }
 
-:root {
-  --radius: 0.75rem;
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 0 0% 3.9%;
-  --sidebar-primary: 0 0% 9%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 0 0% 96.1%;
-  --sidebar-accent-foreground: 0 0% 9%;
-  --sidebar-border: 0 0% 89.8%;
-  --sidebar-ring: 0 0% 3.9%;
-  --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
-  --gradient-secondary: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 96.1%));
-  --gradient-hero: linear-gradient(135deg, hsl(0 0% 9% / .1), hsl(0 0% 20% / .1));
-  --shadow-glow: 0 0 40px hsl(0 0% 9% / .15);
-  --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / .1);
-  --shadow-elevated: 0 16px 64px -12px hsl(0 0% 0% / .2);
-  --transition-smooth: all .3s cubic-bezier(.4, 0, .2, 1);
-  --transition-spring: all .5s cubic-bezier(.34, 1.56, .64, 1);
-}
-
-.dark {
-  --background: 220 13% 9%;
-  --foreground: 220 9% 95%;
-  --card: 220 13% 11%;
-  --card-foreground: 220 9% 95%;
-  --popover: 220 13% 11%;
-  --popover-foreground: 220 9% 95%;
-  --primary: 217 91% 60%;
-  --primary-foreground: 220 13% 9%;
-  --secondary: 220 13% 14%;
-  --secondary-foreground: 220 9% 95%;
-  --muted: 220 13% 14%;
-  --muted-foreground: 220 9% 60%;
-  --accent: 262 83% 58%;
-  --accent-foreground: 220 9% 95%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 220 9% 95%;
-  --border: 220 13% 18%;
-  --input: 220 13% 14%;
-  --ring: 217 91% 60%;
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
-  --sidebar: 220 13% 11%;
-  --sidebar-foreground: 220 9% 95%;
-  --sidebar-primary: 217 91% 60%;
-  --sidebar-primary-foreground: 220 9% 95%;
-  --sidebar-accent: 220 13% 14%;
-  --sidebar-accent-foreground: 220 9% 95%;
-  --sidebar-border: 220 13% 18%;
-  --sidebar-ring: 217 91% 60%;
-  --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%));
-  --gradient-secondary: linear-gradient(135deg, hsl(220 13% 11%), hsl(220 13% 14%));
-  --gradient-hero: linear-gradient(135deg, hsl(217 91% 60% / .1), hsl(262 83% 58% / .1));
-  --shadow-glow: 0 0 40px hsl(217 91% 60% / .15);
-  --shadow-card: 0 4px 24px -4px hsl(220 13% 5% / .5);
-  --shadow-elevated: 0 16px 64px -12px hsl(220 13% 5% / .6);
-  --transition-smooth: all .3s cubic-bezier(.4, 0, .2, 1);
-  --transition-spring: all .5s cubic-bezier(.34, 1.56, .64, 1);
-}
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
-  }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1, 'cv11', 'ss01';
-    font-variation-settings: 'opsz' 32;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    border-color: var(--color-border);
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky header never covers a heading. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
   }
 
-  /* Custom scrollbar */
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Bands are full-bleed; nothing should ever scroll sideways. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent focus ring across every interactive element. */
+  :focus-visible {
+    outline: 3px solid var(--color-rose);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-rose-wash);
+    color: var(--color-ink);
+  }
+
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
   }
-
   ::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
+    background: var(--color-cream-deep);
   }
-
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
-    border-radius: 3px;
+    background: #d9c9d3;
+    border-radius: 99px;
+    border: 2px solid var(--color-cream-deep);
   }
-
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent));
+    background: var(--color-rose-soft);
   }
 }
 
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
 @layer utilities {
-  /* Gradient backgrounds */
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
+  /* Section eyebrow — the small rose label above every section heading. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-rose-ink);
   }
 
-  .bg-gradient-secondary {
-    background: var(--gradient-secondary);
+  /* Hand-drawn brush underline, as in the reference.
+     Painted as a background image rather than a ::after pseudo-element: a
+     negative z-index would drop it behind the section band, and backgrounds
+     always paint behind their own text. `box-decoration-break: clone` keeps the
+     stroke correct when the phrase wraps across lines. */
+  .underline-sketch {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M3,12.5 C38,5.5 68,15 108,8.5 C140,3.5 170,11.5 197,6' fill='none' stroke='%23FF8FAB' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0.3em;
+    padding-bottom: 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
-  .bg-gradient-hero {
-    background: var(--gradient-hero);
+
+  /* Frosted surface used by the sticky header once it detaches.
+     The tint is deliberately opaque enough (0.92) to stay legible on its own —
+     some mobile browsers skip `backdrop-filter` when compositing a fixed
+     element, and at a lighter tint the page text bled straight through. */
+  .surface-glass {
+    background-color: rgb(255 248 242 / 0.92);
+    backdrop-filter: blur(14px) saturate(1.5);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
   }
 
-  /* Shadows */
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
+  /* Soft noise/paper grain — keeps large pastel fields from looking flat. */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
-
-  .shadow-elevated {
-    box-shadow: var(--shadow-elevated);
-  }
-
-  /* Animations */
-  .transition-smooth {
-    transition: var(--transition-smooth);
-  }
-
-  .transition-spring {
-    transition: var(--transition-spring);
-  }
-
-  /* Glass effect */
-  .glass {
-    backdrop-filter: blur(12px);
-    background: hsl(var(--card) / 0.8);
-    border: 1px solid hsl(var(--border) / 0.5);
-  }
-
-  /* Hover glow effect */
-  .hover-glow:hover {
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-2px);
-  }
-
-  /* Gradient text fix */
-  .bg-clip-text {
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent;
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
   }
 }
 
-/* App.css styles */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* ==========================================================================
+   Reduced motion — kill decorative loops, keep everything readable.
+   Framer Motion reads this too (useReducedMotion), so reveals become instant.
+   ========================================================================== */
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

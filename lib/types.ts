@@ -1,11 +1,19 @@
+export type Tone = "blush" | "lavender" | "mint" | "butter" | "peach";
+
 export interface Project {
   id: number;
   title: string;
+  /** Short category label shown above the title, e.g. "Video & Collaboration". */
+  category: string;
   description: string;
   image: string;
   tech: string[];
   liveUrl: string;
   githubUrl: string;
+  /** Background wash behind the screenshot on the work card. */
+  tone: Tone;
+  /** Optional — highlights the card as the lead case study. */
+  featured?: boolean;
 }
 
 export interface YouTubeVideo {
@@ -16,13 +24,4 @@ export interface YouTubeVideo {
   duration: string;
   views: string;
   url: string;
-}
-
-export interface TechSkill {
-  name: string;
-}
-
-export interface TechCategory {
-  title: string;
-  skills: TechSkill[];
 }

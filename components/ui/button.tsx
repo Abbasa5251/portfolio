@@ -5,33 +5,38 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  [
+    "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap",
+    "rounded-xl font-semibold tracking-[-0.01em]",
+    "transition-all duration-200 ease-[var(--ease-out-soft)]",
+    "focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-rose",
+    "disabled:pointer-events-none disabled:opacity-55",
+    "[&_svg]:size-[1.05em] [&_svg]:shrink-0 [&_svg]:pointer-events-none",
+  ].join(" "),
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 shadow-card hover:shadow-glow",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        /** Primary conversion action — white on rose clears AA at 4.70:1. */
+        primary:
+          "bg-rose text-white shadow-[var(--shadow-rose)] hover:-translate-y-0.5 hover:bg-rose-ink hover:shadow-[0_12px_32px_-6px_rgb(225_29_72/0.5)] active:translate-y-0",
+        /** Secondary action — deep navy, 12.97:1 with white. */
+        navy: "bg-navy-btn text-white shadow-[var(--shadow-navy)] hover:-translate-y-0.5 hover:bg-navy hover:shadow-[0_12px_32px_-6px_rgb(17_26_71/0.42)] active:translate-y-0",
+        /** Tertiary — outlined, sits on any pastel band. */
         outline:
-          "border border-border bg-transparent hover:bg-secondary/50 hover:border-primary/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-secondary/50 hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-primary text-white font-semibold hover:shadow-glow hover:scale-105 transition-spring",
-        glass:
-          "glass hover:bg-card/90 border-primary/20 hover:border-primary/50",
+          "border-2 border-ink/15 bg-white/70 text-ink hover:-translate-y-0.5 hover:border-ink/35 hover:bg-white hover:shadow-card active:translate-y-0",
+        /** For the dark navy contact card and footer. */
+        onNavy:
+          "bg-white text-ink hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_12px_32px_-6px_rgb(0_0_0/0.35)] active:translate-y-0",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        /* 44px minimum height throughout — comfortable tap target. */
+        default: "h-11 px-5 text-[0.9375rem]",
+        sm: "h-11 px-4 text-sm",
+        lg: "h-13 px-7 text-base",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   }

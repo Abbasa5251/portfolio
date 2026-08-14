@@ -1,34 +1,63 @@
-import Navigation from "@/components/navigation";
-import HeroSection from "@/components/hero-section";
-import PortfolioSection from "@/components/projects-section";
-import YouTubeSection from "@/components/youtube-section";
-import AboutSection from "@/components/about-section";
-import ContactSection from "@/components/contact-section";
+import { SiteHeader } from "@/components/site-header";
+import { Hero } from "@/components/hero";
+import { About } from "@/components/about";
+import { Services } from "@/components/services";
+import { Work } from "@/components/work";
+import { Process } from "@/components/process";
+import { Testimonials } from "@/components/testimonials";
+import { YouTube } from "@/components/youtube";
+import { Contact } from "@/components/contact";
+import { SiteFooter } from "@/components/site-footer";
+import { SectionWave } from "@/components/section-wave";
+import { visibleTestimonials } from "@/lib/site-config";
 
-function HomePage() {
+/**
+ * Section order is a deliberate funnel:
+ *   who I am → what I sell → proof I can do it → how it'll go →
+ *   social proof → a way to judge me for free → the ask.
+ *
+ * Each section owns a pastel band, joined by wave dividers. The `from` colour
+ * on every wave must match the band above it and `to` the band below.
+ */
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SiteHeader />
+
       <main>
-        <HeroSection />
-        <PortfolioSection />
-        <YouTubeSection />
-        <div id="about">
-          <AboutSection />
-        </div>
-        <ContactSection />
+        <Hero />
+        <SectionWave from="cream" to="blush" variant={0} />
+
+        <About />
+        <SectionWave from="blush" to="lavender" variant={1} />
+
+        <Services />
+        <SectionWave from="lavender" to="cream" variant={2} />
+
+        <Work />
+        <SectionWave from="cream" to="butter" variant={1} />
+
+        <Process />
+
+        {/* The section and the two waves that frame it appear together, so the
+            butter→mint transition stays seamless when there are no quotes. */}
+        {visibleTestimonials.length > 0 ? (
+          <>
+            <SectionWave from="butter" to="white" variant={2} />
+            <Testimonials />
+            <SectionWave from="white" to="mint" variant={0} />
+          </>
+        ) : (
+          <SectionWave from="butter" to="mint" variant={2} />
+        )}
+
+        <YouTube />
+        <SectionWave from="mint" to="cream" variant={1} />
+
+        <Contact />
       </main>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-border/50 bg-card/30">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2025 Abbas Anandwala. Built with 💙 by ADev Tutorials.
-          </p>
-        </div>
-      </footer>
-    </div>
+      <SiteFooter />
+    </>
   );
 }
-
-export default HomePage;
