@@ -38,13 +38,13 @@ export const site = {
   bookingUrl: null as string | null,
 
   /**
-   * MUST match the host that actually serves the page. Vercel has `www` as the
-   * primary domain and 307s the bare apex to it, so declaring the apex here
-   * pointed every canonical, og:url, sitemap entry and JSON-LD @id at a URL
-   * that redirects. To switch to the apex instead, change the primary domain in
-   * Vercel first, then change this — the two have to agree.
+   * MUST match the host that actually serves the page, because it feeds every
+   * canonical, og:url, sitemap entry and JSON-LD @id. Vercel now serves the
+   * bare apex directly and 307s `www` to it (verified live), so the apex is
+   * canonical. If the primary domain is ever changed back in Vercel, change
+   * this in the same pass — a mismatch points every SEO signal at a redirect.
    */
-  siteUrl: "https://www.adevtutorials.in",
+  siteUrl: "https://adevtutorials.in",
 
   /**
    * Feeds <lastmod> in the sitemap. Deliberately a fixed date rather than
