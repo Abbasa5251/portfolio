@@ -49,10 +49,10 @@ export function Hero() {
         <div className="max-w-xl">
           {site.openToWork && (
             <motion.div {...line(0)} className="mb-6">
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-mint bg-white/80 py-1.5 pl-2.5 pr-4 text-[0.8125rem] font-semibold text-ink shadow-card">
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-mint bg-card/80 py-1.5 pl-2.5 pr-4 text-[0.8125rem] font-semibold text-ink shadow-card">
                 <span className="relative grid size-2.5 place-items-center">
-                  <span className="absolute size-2.5 animate-ping rounded-full bg-[#34C759]/70" />
-                  <span className="size-2 rounded-full bg-[#1F9D43]" />
+                  <span className="absolute size-2.5 animate-ping rounded-full bg-live/70" />
+                  <span className="size-2 rounded-full bg-live" />
                 </span>
                 {site.openToWorkLabel}
               </span>
@@ -151,7 +151,7 @@ export function Hero() {
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
               <span
                 key={`${item}-${i}`}
-                className="whitespace-nowrap rounded-full border border-ink/10 bg-white/80 px-5 py-2.5 font-display text-[0.9375rem] font-semibold text-ink-soft"
+                className="whitespace-nowrap rounded-full border border-ink/10 bg-card/80 px-5 py-2.5 font-display text-[0.9375rem] font-semibold text-ink-soft"
               >
                 {item}
               </span>
@@ -169,7 +169,7 @@ export function Hero() {
           className="group inline-flex items-center gap-2 text-sm font-semibold text-body transition-colors hover:text-rose-ink"
         >
           Scroll to explore
-          <span className="grid size-8 place-items-center rounded-full border border-ink/12 bg-white/70 transition-transform duration-300 group-hover:translate-y-0.5">
+          <span className="grid size-8 place-items-center rounded-full border border-ink/12 bg-card/70 transition-transform duration-300 group-hover:translate-y-0.5">
             <ArrowRight className="size-3.5 rotate-90" />
           </span>
         </Link>

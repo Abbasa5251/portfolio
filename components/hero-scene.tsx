@@ -49,11 +49,11 @@ const SPARKLES: Array<{
   fill: string;
   delay: string;
 }> = [
-  { x: 92, y: 74, s: 0.85, fill: "#1B2560", delay: "0s" },
+  { x: 92, y: 74, s: 0.85, fill: "var(--scene-spark)", delay: "0s" },
   { x: 604, y: 46, s: 1.15, fill: "#E11D48", delay: "0.7s" },
   { x: 452, y: 66, s: 0.65, fill: "#A78BFA", delay: "1.4s" },
   { x: 44, y: 268, s: 0.8, fill: "#E11D48", delay: "2.1s" },
-  { x: 626, y: 336, s: 0.95, fill: "#1B2560", delay: "1.1s" },
+  { x: 626, y: 336, s: 0.95, fill: "var(--scene-spark)", delay: "1.1s" },
   { x: 396, y: 404, s: 0.6, fill: "#A78BFA", delay: "2.6s" },
 ];
 
@@ -71,12 +71,12 @@ export function HeroScene({ className }: { className?: string }) {
         <g className={reduced ? undefined : "animate-drift"}>
           <path
             d="M126,58 C246,4 420,18 522,72 C624,126 660,238 606,326 C552,414 404,452 276,438 C148,424 40,368 20,268 C0,168 6,112 126,58 Z"
-            fill="#FBDCE7"
+            fill="var(--scene-blob-a)"
           />
         </g>
         <path
           d="M420,96 C516,74 596,132 606,212 C616,292 552,352 470,356 C388,360 336,300 342,222 C348,144 324,118 420,96 Z"
-          fill="#E2DDF8"
+          fill="var(--scene-blob-b)"
           opacity="0.75"
         />
 
@@ -101,10 +101,10 @@ export function HeroScene({ className }: { className?: string }) {
         {/* ---- Laptop --------------------------------------------------- */}
         <g>
           {/* Base */}
-          <rect x="100" y="354" width="360" height="16" rx="8" fill="#D5DAEF" />
-          <rect x="250" y="354" width="60" height="6" rx="3" fill="#B9C0DE" />
+          <rect x="100" y="354" width="360" height="16" rx="8" fill="var(--scene-deck)" />
+          <rect x="250" y="354" width="60" height="6" rx="3" fill="var(--scene-deck)" />
           {/* Lid */}
-          <rect x="110" y="118" width="340" height="234" rx="16" fill="#1B2560" />
+          <rect x="110" y="118" width="340" height="234" rx="16" fill="var(--scene-object)" />
           <rect x="124" y="132" width="312" height="186" rx="7" fill="#0E1533" />
           <circle cx="280" cy="126" r="2.6" fill="#4A5590" />
 
@@ -157,10 +157,11 @@ export function HeroScene({ className }: { className?: string }) {
           transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <g className={reduced ? undefined : "animate-float"}>
-            <rect x="472" y="86" width="122" height="240" rx="22" fill="#1B2560" />
+            <rect x="472" y="86" width="122" height="240" rx="22" fill="var(--scene-object)" />
             <rect x="480" y="94" width="106" height="224" rx="15" fill="#FFF8F2" />
-            <rect x="514" y="99" width="38" height="6" rx="3" fill="#1B2560" />
-            {/* App mock */}
+            <rect x="514" y="99" width="38" height="6" rx="3" fill="var(--scene-object)" />
+            {/* App mock. A phone screen is lit in both themes, so its contents
+                stay literal pastels rather than following the page tokens. */}
             <rect x="492" y="118" width="52" height="9" rx="4.5" fill="#FBDCE7" />
             <rect x="492" y="136" width="82" height="56" rx="10" fill="#E2DDF8" />
             <circle cx="512" cy="158" r="9" fill="#FF8FAB" />
@@ -184,8 +185,8 @@ export function HeroScene({ className }: { className?: string }) {
           <g className={reduced ? undefined : "animate-float-slow"}>
             <path
               d="M158,44 h96 a16,16 0 0 1 16,16 v44 a16,16 0 0 1 -16,16 h-54 l-24,20 4,-20 h-22 a16,16 0 0 1 -16,-16 v-44 a16,16 0 0 1 16,-16 Z"
-              fill="#FFFFFF"
-              stroke="#1B2560"
+              fill="var(--scene-surface)"
+              stroke="var(--scene-ink)"
               strokeWidth="3.5"
               strokeLinejoin="round"
             />
@@ -193,7 +194,7 @@ export function HeroScene({ className }: { className?: string }) {
               x="206"
               y="93"
               textAnchor="middle"
-              fill="#1B2560"
+              fill="var(--scene-ink)"
               fontSize="30"
               fontWeight="700"
               fontFamily="var(--font-mono, monospace)"
@@ -228,17 +229,17 @@ export function HeroScene({ className }: { className?: string }) {
           />
           <path
             d="M578,398 a20,20 0 0 1 0,30"
-            stroke="#1B2560"
+            stroke="var(--scene-object)"
             strokeWidth="8"
             strokeLinecap="round"
             fill="none"
           />
-          <path d="M506,370 h70 v36 a22,22 0 0 1 -22,22 h-26 a22,22 0 0 1 -22,-22 Z" fill="#1B2560" />
+          <path d="M506,370 h70 v36 a22,22 0 0 1 -22,22 h-26 a22,22 0 0 1 -22,-22 Z" fill="var(--scene-object)" />
           <text
             x="541"
             y="406"
             textAnchor="middle"
-            fill="#FFF8F2"
+            fill="var(--scene-object-fg)"
             fontSize="19"
             fontWeight="800"
             fontFamily="var(--font-display, sans-serif)"

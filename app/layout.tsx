@@ -3,6 +3,7 @@ import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 import { homePageSchema } from "@/lib/structured-data";
 import { site } from "@/lib/site-config";
 
@@ -78,15 +79,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fff8f2",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff8f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#14121f" },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Scroll reveals are server-rendered at opacity 0 by Framer Motion, so
             without the bundle the page would read as blank. This restores every
@@ -98,17 +102,22 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${jakarta.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {/* Keyboard users can jump straight past the nav. */}
-        <a
-          href="#top"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-xl focus:bg-navy focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
-        >
-          Skip to content
-        </a>
+        {/* ThemeProvider wraps everything so its blocking no-flash script is
+            the first thing in <body> and the theme class lands before any
+            markup is painted. */}
+        <ThemeProvider>
+          {/* Keyboard users can jump straight past the nav. */}
+          <a
+            href="#top"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-xl focus:bg-navy focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+          >
+            Skip to content
+          </a>
 
-        {children}
+          {children}
 
-        <Toaster position="bottom-right" />
+          <Toaster position="bottom-right" />
+        </ThemeProvider>
 
         {/* Structured data — see lib/structured-data.ts for what it declares. */}
         <script

@@ -6,7 +6,7 @@ type Band = Tone | "cream" | "white";
 /** Background colour of the band above the wave. */
 const BG: Record<Band, string> = {
   cream: "bg-cream",
-  white: "bg-white",
+  white: "bg-card",
   blush: "bg-blush",
   lavender: "bg-lavender",
   mint: "bg-mint",
@@ -17,7 +17,7 @@ const BG: Record<Band, string> = {
 /** Fill colour of the wave itself — i.e. the band below. */
 const FILL: Record<Band, string> = {
   cream: "text-cream",
-  white: "text-white",
+  white: "text-card",
   blush: "text-blush",
   lavender: "text-lavender",
   mint: "text-mint",

@@ -37,7 +37,7 @@ export function Work() {
         >
           {projects.map((project) => (
             <StaggerItem key={project.id} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
+              <article className="group flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
                 {/* ---- Screenshot on a tinted stage ------------------- */}
                 <div
                   className={`relative overflow-hidden px-6 pt-7 ${WASH[project.tone]}`}

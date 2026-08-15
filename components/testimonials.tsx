@@ -24,7 +24,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="grain relative overflow-hidden bg-white py-20 md:py-28"
+      className="grain relative overflow-hidden bg-card py-20 md:py-28"
     >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
@@ -60,7 +60,7 @@ export function Testimonials() {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        className="size-4 fill-[#F59E0B] text-[#F59E0B]"
+                        className="size-4 fill-star text-star"
                         aria-hidden="true"
                       />
                     ))}

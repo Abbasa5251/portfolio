@@ -21,10 +21,10 @@ const ICONS: Record<Service["icon"], LucideIcon> = {
 
 /** Icon tile + top accent bar per service, keyed by tone. */
 const TONE: Record<Service["tone"], { tile: string; bar: string }> = {
-  lavender: { tile: "bg-lavender-deep text-ink", bar: "bg-[#8B7CF6]" },
-  blush: { tile: "bg-rose-wash text-rose-ink", bar: "bg-rose" },
-  butter: { tile: "bg-butter text-[#854D0E]", bar: "bg-[#EAB308]" },
-  mint: { tile: "bg-mint text-[#166534]", bar: "bg-[#22C55E]" },
+  lavender: { tile: "bg-lavender-deep text-ink", bar: "bg-accent-violet" },
+  blush: { tile: "bg-rose-wash text-rose-ink", bar: "bg-rose-solid" },
+  butter: { tile: "bg-butter text-on-butter", bar: "bg-accent-amber" },
+  mint: { tile: "bg-mint text-on-mint", bar: "bg-accent-green" },
 };
 
 export function Services() {
@@ -48,7 +48,7 @@ export function Services() {
 
             return (
               <StaggerItem key={service.id} className="h-full">
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-card bg-white p-6 shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-card bg-card p-6 shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
                   {/* Accent bar wipes across on hover */}
                   <span
                     aria-hidden

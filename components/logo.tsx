@@ -25,12 +25,12 @@ export function Logo({
         aria-hidden="true"
         className={cn(
           "grid size-11 place-items-center rounded-[0.9rem] font-display text-[1.0625rem] font-extrabold leading-none tracking-tight transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-105",
-          onNavy ? "bg-white text-navy" : "bg-navy text-cream",
+          onNavy ? "bg-white text-navy" : "bg-navy text-white",
         )}
       >
         <span>
           {site.initials}
-          <span className="text-rose-soft">.</span>
+          <span className={onNavy ? "text-rose-solid" : "text-rose-soft"}>.</span>
         </span>
       </span>
 

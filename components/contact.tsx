@@ -189,7 +189,7 @@ export function Contact() {
 
           {/* ---- Form -------------------------------------------------- */}
           <Reveal direction="left" delay={0.08} className="h-full">
-            <div className="h-full rounded-card border border-ink/6 bg-white p-7 shadow-card md:p-9">
+            <div className="h-full rounded-card border border-ink/6 bg-card p-7 shadow-card md:p-9">
               <h3 className="font-display text-2xl font-bold">
                 Start a project
               </h3>

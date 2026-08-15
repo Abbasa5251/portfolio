@@ -68,7 +68,7 @@ export function SocialLinks({
                 "grid size-11 place-items-center rounded-xl border transition-all duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5",
                 onNavy
                   ? "border-white/15 bg-white/8 text-on-navy hover:border-white/35 hover:bg-white/15 hover:text-white"
-                  : "border-ink/10 bg-white/80 text-ink-soft hover:border-rose/40 hover:bg-white hover:text-rose-ink hover:shadow-card"
+                  : "border-ink/10 bg-card/80 text-ink-soft hover:border-rose/40 hover:bg-card hover:text-rose-ink hover:shadow-card"
               )}
             >
               <Icon className="size-[1.05rem]" />

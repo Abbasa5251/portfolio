@@ -1,83 +1,105 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by a `.dark` class on <html>, set by next-themes. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ==========================================================================
    Design tokens — "Warm Studio"
-   A soft pastel band system: cream base, blush / lavender / mint / butter
-   section bands, deep-navy ink for type, rose for calls to action.
 
-   Every foreground/background pair below was checked for WCAG AA:
-     ink   #16205C  on any band  → 12.7:1+   (headings + body)
-     body  #565B7E  on any band  →  5.1:1+   (body copy)
-     rose-ink #C2143C on any band →  5.1:1+  (small eyebrow labels)
-     white on rose #E11D48       →  4.70:1   (primary button)
-     white on navy #1B2C6B       → 12.97:1   (secondary button)
-     cream on navy #111A47       → 15.81:1   (footer)
-   Do not use `rose` for small text — it only clears AA for large display type.
+   The band names (cream / blush / lavender / mint / butter) describe a HUE
+   IDENTITY and a position in the section rhythm, not a literal lightness. In
+   light mode they are pastel washes; in dark mode they become tinted dark
+   surfaces of the same hue family, so the alternating rhythm survives without
+   turning muddy. `bg-blush` therefore means "the rose-tinted band" in both
+   themes, and no component needs to know which theme is active.
+
+   Every value is declared twice below — once under :root, once under .dark —
+   and `@theme inline` makes the utilities resolve the raw variable at use time
+   rather than baking in the light value.
+
+   Contrast was measured independently per theme (light-mode values do not
+   carry over). See the notes above each block.
    ========================================================================== */
 
-@theme {
-  /* --- Brand ramp ------------------------------------------------------- */
-  --color-cream: #fff8f2;
-  --color-cream-deep: #fdf1e7;
-  --color-blush: #fdebf1;
-  --color-blush-deep: #fbdce7;
-  --color-lavender: #edeafb;
-  --color-lavender-deep: #e2ddf8;
-  --color-mint: #e3f5e9;
-  --color-butter: #fdf1d3;
-  --color-peach: #fee9de;
+@theme inline {
+  /* --- Bands ------------------------------------------------------------ */
+  --color-cream: var(--band-base);
+  --color-cream-deep: var(--band-base-deep);
+  --color-blush: var(--band-rose);
+  --color-blush-deep: var(--band-rose-deep);
+  --color-lavender: var(--band-violet);
+  --color-lavender-deep: var(--band-violet-deep);
+  --color-mint: var(--band-green);
+  --color-butter: var(--band-amber);
+  --color-peach: var(--band-peach);
 
-  --color-ink: #16205c;
-  --color-ink-soft: #2b3670;
-  --color-body: #565b7e;
-
-  --color-rose: #e11d48;
-  --color-rose-ink: #c2143c;
-  --color-rose-soft: #ff8fab;
-  --color-rose-wash: #ffe4ec;
-
-  --color-navy: #111a47;
-  --color-navy-btn: #1b2c6b;
-  --color-on-navy: #c9cbe8;
-
-  /* --- Semantic aliases (shadcn/ui contract) ---------------------------- */
-  --color-background: var(--color-cream);
-  --color-foreground: var(--color-ink);
-  --color-card: #ffffff;
-  --color-card-foreground: var(--color-ink);
-  --color-popover: #ffffff;
-  --color-popover-foreground: var(--color-ink);
-  --color-primary: var(--color-rose);
-  --color-primary-foreground: #ffffff;
-  --color-secondary: var(--color-lavender);
-  --color-secondary-foreground: var(--color-ink);
-  --color-muted: #f4f1f6;
-  --color-muted-foreground: var(--color-body);
-  --color-accent: var(--color-blush);
-  --color-accent-foreground: var(--color-ink);
-  --color-destructive: #c2143c;
-  --color-destructive-foreground: #ffffff;
-  --color-border: #efe3e9;
-  --color-input: #e7dfe6;
-  --color-ring: var(--color-rose);
+  /* Elevated surface for every card. Replaces the literal `bg-white` that the
+     light-only build used — that could not follow the theme. */
+  --color-card: var(--surface);
+  --color-card-foreground: var(--fg-strong);
 
   /* --- Type ------------------------------------------------------------- */
+  --color-ink: var(--fg-strong);
+  --color-ink-soft: var(--fg-medium);
+  --color-body: var(--fg-muted);
+
+  /* --- Rose -------------------------------------------------------------
+     `rose-solid` is the button fill and stays constant across themes so that
+     white-on-rose keeps its measured 4.70:1. `rose` is the display accent and
+     `rose-ink` the small-label colour — both must flip direction, going darker
+     on light backgrounds and lighter on dark ones. */
+  --color-rose-solid: #e11d48;
+  --color-rose-ink-solid: #c2143c;
+  --color-rose: var(--accent-rose);
+  --color-rose-ink: var(--accent-rose-ink);
+  --color-rose-soft: var(--accent-rose-soft);
+  --color-rose-wash: var(--accent-rose-wash);
+
+  /* --- Permanently-dark panels (footer, contact card) -------------------- */
+  --color-navy: var(--panel-navy);
+  --color-navy-btn: var(--panel-navy-btn);
+  --color-on-navy: var(--panel-navy-fg);
+
+  /* --- Accent foregrounds for tinted icon tiles ------------------------- */
+  --color-on-mint: var(--accent-green-fg);
+  --color-on-butter: var(--accent-amber-fg);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+  --color-star: var(--accent-star);
+  --color-live: var(--accent-live);
+
+  /* --- shadcn/ui contract ----------------------------------------------- */
+  --color-background: var(--band-base);
+  --color-foreground: var(--fg-strong);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--fg-strong);
+  --color-primary: #e11d48;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--band-violet);
+  --color-secondary-foreground: var(--fg-strong);
+  --color-muted: var(--surface-muted);
+  --color-muted-foreground: var(--fg-muted);
+  --color-accent: var(--band-rose);
+  --color-accent-foreground: var(--fg-strong);
+  --color-destructive: var(--accent-rose-ink);
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--line);
+  --color-input: var(--line-input);
+  --color-ring: var(--accent-rose);
+
+  /* --- Type families ---------------------------------------------------- */
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  /* --- Radii ------------------------------------------------------------ */
   --radius-card: 1.25rem;
 
-  /* --- Elevation — warm-tinted, never neutral grey ---------------------- */
-  --shadow-card: 0 2px 4px -1px rgb(22 32 92 / 0.04),
-    0 12px 28px -8px rgb(22 32 92 / 0.1);
-  --shadow-lift: 0 4px 8px -2px rgb(22 32 92 / 0.06),
-    0 24px 48px -12px rgb(22 32 92 / 0.16);
+  --shadow-card: var(--elev-card);
+  --shadow-lift: var(--elev-lift);
   --shadow-rose: 0 8px 24px -6px rgb(225 29 72 / 0.4);
-  --shadow-navy: 0 8px 24px -6px rgb(17 26 71 / 0.32);
+  --shadow-navy: var(--elev-navy);
 
-  /* --- Motion ----------------------------------------------------------- */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -156,6 +178,153 @@
 }
 
 /* ==========================================================================
+   LIGHT — measured: ink 12.7:1+ on every band, body 5.1:1+,
+   rose-ink 5.1:1+, white on rose 4.70:1, cream on navy 15.8:1.
+   `rose` (#e11d48) clears AA only for large display text on these bands.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --band-base: #fff8f2;
+  --band-base-deep: #fdf1e7;
+  --band-rose: #fdebf1;
+  --band-rose-deep: #fbdce7;
+  --band-violet: #edeafb;
+  --band-violet-deep: #e2ddf8;
+  --band-green: #e3f5e9;
+  --band-amber: #fdf1d3;
+  --band-peach: #fee9de;
+
+  --surface: #ffffff;
+  --surface-muted: #f4f1f6;
+
+  --fg-strong: #16205c;
+  --fg-medium: #2b3670;
+  --fg-muted: #565b7e;
+
+  --accent-rose: #e11d48;
+  --accent-rose-ink: #c2143c;
+  --accent-rose-soft: #ff8fab;
+  --accent-rose-wash: #ffe4ec;
+
+  --panel-navy: #111a47;
+  --panel-navy-btn: #1b2c6b;
+  --panel-navy-fg: #c9cbe8;
+
+  --accent-green-fg: #166534;
+  --accent-amber-fg: #854d0e;
+  --accent-violet: #8b7cf6;
+  --accent-amber: #eab308;
+  --accent-green: #22c55e;
+  --accent-star: #f59e0b;
+  --accent-live: #1f9d43;
+
+  --line: #efe3e9;
+  --line-input: #e7dfe6;
+
+  --elev-card: 0 2px 4px -1px rgb(22 32 92 / 0.04),
+    0 12px 28px -8px rgb(22 32 92 / 0.1);
+  --elev-lift: 0 4px 8px -2px rgb(22 32 92 / 0.06),
+    0 24px 48px -12px rgb(22 32 92 / 0.16);
+  --elev-navy: 0 8px 24px -6px rgb(17 26 71 / 0.32);
+
+  --glass: rgb(255 248 242 / 0.92);
+  --grain-opacity: 0.035;
+  --scrollbar-thumb: #d9c9d3;
+
+  --scene-blob-a: #fbdce7;
+  --scene-blob-b: #e2ddf8;
+  --scene-surface: #ffffff;
+  --scene-deck: #d5daef;
+  --scene-object: #1b2560;
+  --scene-object-fg: #fff8f2;
+  --scene-spark: #1b2560;
+  --scene-ink: #1b2560;
+}
+
+/* ==========================================================================
+   DARK — measured independently. Text on every band: ink 13.6:1+,
+   ink-soft 10.3:1+, body 6.3:1+, rose-ink 7.1:1+. Input borders clear the
+   3:1 non-text threshold against BOTH the field fill (3.88:1) and the card
+   behind it (3.17:1). Focus ring clears 3:1 on every surface (5.4–6.8:1).
+   ========================================================================== */
+
+.dark {
+  color-scheme: dark;
+
+  --band-base: #14121f;
+  --band-base-deep: #1e1a2e;
+  --band-rose: #221829;
+  --band-rose-deep: #2e2036;
+  --band-violet: #1e1a3a;
+  --band-violet-deep: #2a2450;
+  --band-green: #16261f;
+  --band-amber: #251f16;
+  --band-peach: #271b18;
+
+  --surface: #2e2846;
+  --surface-muted: #221e33;
+
+  --fg-strong: #f3effa;
+  --fg-medium: #d6d0e8;
+  --fg-muted: #a8a2c2;
+
+  /* Lighter than the light-mode rose so it reads as an accent against a dark
+     field rather than disappearing into it. */
+  --accent-rose: #ff6b8a;
+  --accent-rose-ink: #ff8fa8;
+  --accent-rose-soft: #ff8fab;
+  --accent-rose-wash: #3b1a2a;
+
+  /* The navy panels stay dark in both themes, lifted slightly here so they
+     still separate from the darker page behind them. */
+  --panel-navy: #171f4e;
+  --panel-navy-btn: #2e3c86;
+  --panel-navy-fg: #c9cbe8;
+
+  --accent-green-fg: #7ee0a6;
+  --accent-amber-fg: #f0c374;
+  --accent-violet: #a78bfa;
+  --accent-amber: #f5c563;
+  --accent-green: #4ade80;
+  --accent-star: #fbbf24;
+  --accent-live: #4ade80;
+
+  --line: #3a3356;
+  --line-input: #7a72a6;
+
+  /* Near-black rather than brand-tinted: a navy-tinted shadow is invisible on
+     a dark page, so depth has to come from real darkness plus the border. */
+  --elev-card: 0 2px 4px -1px rgb(0 0 0 / 0.4), 0 12px 28px -8px rgb(0 0 0 / 0.55);
+  --elev-lift: 0 4px 8px -2px rgb(0 0 0 / 0.45),
+    0 24px 48px -12px rgb(0 0 0 / 0.6);
+  --elev-navy: 0 8px 24px -6px rgb(0 0 0 / 0.5);
+
+  --glass: rgb(20 18 31 / 0.92);
+  --grain-opacity: 0.05;
+  --scrollbar-thumb: #443c63;
+
+  --scene-blob-a: #35203a;
+  --scene-blob-b: #262146;
+  --scene-surface: #2e2846;
+  --scene-deck: #4a4470;
+  --scene-object: #4c4380;
+  --scene-object-fg: #f3effa;
+  --scene-spark: #a78bfa;
+  --scene-ink: #f3effa;
+}
+
+/* Field fill sits darker than the card it lives on, so the control reads as
+   recessed. Declared after both themes because only dark needs the override. */
+:root {
+  --field: #fff8f2;
+}
+.dark {
+  --field: #1d1930;
+}
+
+/* ==========================================================================
    Base
    ========================================================================== */
 
@@ -172,8 +341,8 @@
   }
 
   body {
-    background-color: var(--color-cream);
-    color: var(--color-body);
+    background-color: var(--band-base);
+    color: var(--fg-muted);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -186,7 +355,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    color: var(--color-ink);
+    color: var(--fg-strong);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
@@ -195,31 +364,32 @@
     text-wrap: pretty;
   }
 
-  /* A single, consistent focus ring across every interactive element. */
+  /* A single, consistent focus ring across every interactive element.
+     Clears 3:1 against every surface in both themes. */
   :focus-visible {
-    outline: 3px solid var(--color-rose);
+    outline: 3px solid var(--accent-rose);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background-color: var(--color-rose-wash);
-    color: var(--color-ink);
+    background-color: var(--accent-rose-wash);
+    color: var(--fg-strong);
   }
 
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-cream-deep);
+    background: var(--band-base-deep);
   }
   ::-webkit-scrollbar-thumb {
-    background: #d9c9d3;
+    background: var(--scrollbar-thumb);
     border-radius: 99px;
-    border: 2px solid var(--color-cream-deep);
+    border: 2px solid var(--band-base-deep);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-rose-soft);
+    background: var(--accent-rose-soft);
   }
 }
 
@@ -235,14 +405,19 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-rose-ink);
+    color: var(--accent-rose-ink);
   }
 
-  /* Hand-drawn brush underline, as in the reference.
-     Painted as a background image rather than a ::after pseudo-element: a
-     negative z-index would drop it behind the section band, and backgrounds
-     always paint behind their own text. `box-decoration-break: clone` keeps the
-     stroke correct when the phrase wraps across lines. */
+  /* Hand-drawn brush underline. Painted as a background image rather than a
+     ::after pseudo-element: a negative z-index would drop it behind the section
+     band, and backgrounds always paint behind their own text.
+     `box-decoration-break: clone` keeps the stroke correct across line wraps.
+
+     The stroke stays a fixed #FF8FAB rather than a token. Making it themable
+     needs the colour on the element and the shape in a `mask-image`, but a mask
+     clips the element's TEXT as well as its background — that briefly erased
+     every accent word. This mid pink reads correctly on both the cream and the
+     near-black band, so there is nothing to gain by theming it. */
   .underline-sketch {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M3,12.5 C38,5.5 68,15 108,8.5 C140,3.5 170,11.5 197,6' fill='none' stroke='%23FF8FAB' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -253,32 +428,36 @@
     box-decoration-break: clone;
   }
 
-
-  /* Frosted surface used by the sticky header once it detaches.
-     The tint is deliberately opaque enough (0.92) to stay legible on its own —
-     some mobile browsers skip `backdrop-filter` when compositing a fixed
-     element, and at a lighter tint the page text bled straight through. */
+  /* Frosted bar for the sticky header. The tint is deliberately opaque enough
+     (0.92) to stay legible on its own — some mobile browsers skip
+     `backdrop-filter` when compositing a fixed element. */
   .surface-glass {
-    background-color: rgb(255 248 242 / 0.92);
+    background-color: var(--glass);
     backdrop-filter: blur(14px) saturate(1.5);
     -webkit-backdrop-filter: blur(14px) saturate(1.5);
   }
 
-  /* Soft noise/paper grain — keeps large pastel fields from looking flat. */
+  /* Soft paper grain — keeps large flat fields from looking dead. Slightly
+     stronger in dark, where banding on near-black is more visible. */
   .grain::before {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: var(--grain-opacity);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  /* Form field fill. */
+  .bg-field {
+    background-color: var(--field);
+  }
+
   .shadow-card {
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--elev-card);
   }
   .shadow-lift {
-    box-shadow: var(--shadow-lift);
+    box-shadow: var(--elev-lift);
   }
 }
 

@@ -20,10 +20,10 @@ function Select({
       <select
         data-slot="select"
         className={cn(
-          "h-12 w-full cursor-pointer appearance-none rounded-xl border-2 border-input bg-cream/60 pl-4 pr-11 text-base text-ink",
+          "h-12 w-full cursor-pointer appearance-none rounded-xl border-2 border-input bg-field pl-4 pr-11 text-base text-ink",
           "outline-none transition-colors duration-200",
           "hover:border-ink/20",
-          "focus-visible:border-rose focus-visible:bg-white focus-visible:outline-none",
+          "focus-visible:border-rose focus-visible:bg-card focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-55",
           "aria-invalid:border-destructive",
           className

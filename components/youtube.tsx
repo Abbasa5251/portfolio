@@ -26,15 +26,15 @@ export function YouTube() {
 
         <Reveal delay={0.12} className="mt-8">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-card">
+            <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-ink shadow-card">
               <Users className="size-4 text-rose-ink" aria-hidden="true" />
               {youtubeChannel.subscribers} subscribers
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-card">
+            <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-ink shadow-card">
               <Play className="size-4 text-rose-ink" aria-hidden="true" />
               {youtubeChannel.videoCount} tutorials
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-card">
+            <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-ink shadow-card">
               <YoutubeIcon className="size-4 text-[#FF0000]" />
               {youtubeChannel.handle}
             </span>
@@ -51,7 +51,7 @@ export function YouTube() {
                 href={video.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full flex-col overflow-hidden rounded-card bg-white shadow-card transition-all duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift"
+                className="group flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card transition-all duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift"
               >
                 <div className="relative aspect-video overflow-hidden bg-navy">
                   {/* i.ytimg.com is allow-listed in next.config.ts, so these get
@@ -72,7 +72,7 @@ export function YouTube() {
                   />
                   <span
                     aria-hidden
-                    className="absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-rose text-white opacity-0 shadow-rose transition-all duration-300 ease-spring group-hover:scale-100 group-hover:opacity-100"
+                    className="absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-rose-solid text-white opacity-0 shadow-rose transition-all duration-300 ease-spring group-hover:scale-100 group-hover:opacity-100"
                   >
                     <Play className="size-6 translate-x-px fill-current" />
                   </span>

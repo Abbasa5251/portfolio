@@ -13,8 +13,8 @@ const STAT_ICONS: LucideIcon[] = [Award, Layers, Users, Coffee];
 const TILE: Record<string, string> = {
   rose: "bg-rose-wash text-rose-ink",
   lavender: "bg-lavender-deep text-ink",
-  mint: "bg-mint text-[#166534]",
-  butter: "bg-butter text-[#854D0E]",
+  mint: "bg-mint text-on-mint",
+  butter: "bg-butter text-on-butter",
 };
 
 export function About() {
@@ -52,7 +52,7 @@ export function About() {
               />
 
               {/* Floating credential card */}
-              <div className="absolute -bottom-7 left-1/2 w-max -translate-x-1/2 rounded-2xl border border-ink/8 bg-white/95 px-5 py-3 shadow-lift backdrop-blur">
+              <div className="absolute -bottom-7 left-1/2 w-max -translate-x-1/2 rounded-2xl border border-ink/8 bg-card/95 px-5 py-3 shadow-lift backdrop-blur">
                 <p className="font-display text-sm font-bold text-ink">
                   {youtubeChannel.name}
                 </p>
@@ -125,7 +125,7 @@ export function About() {
             const Icon = STAT_ICONS[i] ?? Award;
             return (
               <StaggerItem key={stat.label}>
-                <div className="group h-full rounded-card border border-white bg-white/70 p-5 text-center shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:bg-white hover:shadow-lift md:p-6">
+                <div className="group h-full rounded-card border border-card bg-card/70 p-5 text-center shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:bg-card hover:shadow-lift md:p-6">
                   <span
                     className={`mx-auto mb-4 grid size-12 place-items-center rounded-2xl transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-6 group-hover:scale-110 ${
                       TILE[stat.tone] ?? TILE.rose

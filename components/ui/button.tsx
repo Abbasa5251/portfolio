@@ -16,17 +16,25 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        /** Primary conversion action — white on rose clears AA at 4.70:1. */
+        /**
+         * The fill is `rose-solid`, which is deliberately the same #E11D48 in
+         * both themes — the button is its own surface, so white-on-rose keeps
+         * its measured 4.70:1 either way. Using the themable `rose` here would
+         * turn the fill pale pink in dark mode and drop the label to ~1.5:1.
+         */
         primary:
-          "bg-rose text-white shadow-[var(--shadow-rose)] hover:-translate-y-0.5 hover:bg-rose-ink hover:shadow-[0_12px_32px_-6px_rgb(225_29_72/0.5)] active:translate-y-0",
-        /** Secondary action — deep navy, 12.97:1 with white. */
+          "bg-rose-solid text-white shadow-[var(--shadow-rose)] hover:-translate-y-0.5 hover:bg-rose-ink-solid hover:shadow-[0_12px_32px_-6px_rgb(225_29_72/0.5)] active:translate-y-0",
+        /** Secondary action — deep navy, 9.97:1+ with white in both themes. */
         navy: "bg-navy-btn text-white shadow-[var(--shadow-navy)] hover:-translate-y-0.5 hover:bg-navy hover:shadow-[0_12px_32px_-6px_rgb(17_26_71/0.42)] active:translate-y-0",
-        /** Tertiary — outlined, sits on any pastel band. */
+        /** Tertiary — outlined, sits on any band. */
         outline:
-          "border-2 border-ink/15 bg-white/70 text-ink hover:-translate-y-0.5 hover:border-ink/35 hover:bg-white hover:shadow-card active:translate-y-0",
-        /** For the dark navy contact card and footer. */
+          "border-2 border-ink/15 bg-card/70 text-ink hover:-translate-y-0.5 hover:border-ink/35 hover:bg-card hover:shadow-card active:translate-y-0",
+        /**
+         * Sits on the navy contact card / footer, which stay dark in both
+         * themes — so this stays a genuinely white button, not a themed surface.
+         */
         onNavy:
-          "bg-white text-ink hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_12px_32px_-6px_rgb(0_0_0/0.35)] active:translate-y-0",
+          "bg-white text-navy hover:-translate-y-0.5 hover:bg-[#f2f0ff] hover:shadow-[0_12px_32px_-6px_rgb(0_0_0/0.35)] active:translate-y-0",
       },
       size: {
         /* 44px minimum height throughout — comfortable tap target. */

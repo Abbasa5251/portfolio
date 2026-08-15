@@ -7,6 +7,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { navItems, site } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -118,6 +119,8 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           {/* Kept visible at every width — the logo collapses to its tile
               below `sm`, which leaves room, and hiding the only CTA on mobile
               costs conversions. */}
@@ -134,7 +137,7 @@ export function SiteHeader() {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="grid size-11 cursor-pointer place-items-center rounded-xl border-2 border-ink/12 bg-white/70 text-ink transition-colors hover:border-ink/30 hover:bg-white lg:hidden"
+            className="grid size-11 cursor-pointer place-items-center rounded-xl border-2 border-ink/12 bg-card/70 text-ink transition-colors hover:border-ink/30 hover:bg-card lg:hidden"
           >
             {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
