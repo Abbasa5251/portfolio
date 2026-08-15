@@ -37,7 +37,22 @@ export const site = {
    */
   bookingUrl: null as string | null,
 
-  siteUrl: "https://adevtutorials.in",
+  /**
+   * MUST match the host that actually serves the page. Vercel has `www` as the
+   * primary domain and 307s the bare apex to it, so declaring the apex here
+   * pointed every canonical, og:url, sitemap entry and JSON-LD @id at a URL
+   * that redirects. To switch to the apex instead, change the primary domain in
+   * Vercel first, then change this — the two have to agree.
+   */
+  siteUrl: "https://www.adevtutorials.in",
+
+  /**
+   * Feeds <lastmod> in the sitemap. Deliberately a fixed date rather than
+   * `new Date()`: a lastmod that says "now" on every build tells search engines
+   * the page changed when it did not, and they learn to discount the signal.
+   * Bump this when the page content actually changes.
+   */
+  contentUpdatedAt: "2026-08-15",
 } as const;
 
 export const socials = {

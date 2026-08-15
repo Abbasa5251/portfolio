@@ -29,8 +29,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const title = `${site.name} — ${site.role}`;
+/** 154 chars — Google truncates search snippets around 160, so this lands whole. */
 const description =
-  "Freelance full-stack developer building fast, accessible web and mobile products with React, Next.js, Node and Python. Fixed scopes, weekly demos, on-time delivery.";
+  "Freelance full-stack developer building fast, accessible web and mobile apps with React, Next.js and Python. Fixed scopes, weekly demos, on-time delivery.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.siteUrl),

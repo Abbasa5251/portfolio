@@ -10,7 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: site.siteUrl,
-      lastModified: new Date(),
+      /* From site-config, not `new Date()` — see the note there. A lastmod that
+         moves on every deploy is a signal search engines learn to ignore. */
+      lastModified: new Date(site.contentUpdatedAt),
       changeFrequency: "monthly",
       priority: 1,
     },
