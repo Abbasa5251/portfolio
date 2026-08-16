@@ -95,13 +95,13 @@ export function PhoneTrio({
         /* Negative rotation tips the top away from centre. On hover the pair
            splay a further 3°, which reads as the group opening up rather than
            the whole card zooming — the flat screenshots already do that. */
-        className="rounded-[12.5%/5.8%] p-[1.6%] transition-transform duration-500 ease-out-soft group-hover:-rotate-[13deg]"
+        className="rounded-[12.5%/5.8%] p-[1.6%] transition-transform duration-500 ease-out-soft group-hover:-rotate-13"
         style={{ ...sideStyle, left: "4%", transform: "rotate(-10deg)" }}
       />
 
       <Phone
         screen={right}
-        className="rounded-[12.5%/5.8%] p-[1.6%] transition-transform duration-500 ease-out-soft group-hover:rotate-[13deg]"
+        className="rounded-[12.5%/5.8%] p-[1.6%] transition-transform duration-500 ease-out-soft group-hover:rotate-13"
         style={{ ...sideStyle, right: "4%", transform: "rotate(10deg)" }}
       />
 

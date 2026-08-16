@@ -19,7 +19,10 @@ const TILE: Record<string, string> = {
 
 export function About() {
   return (
-    <section id="about" className="grain relative overflow-hidden bg-blush py-20 md:py-28">
+    <section
+      id="about"
+      className="grain relative overflow-hidden bg-blush py-20 md:py-28"
+    >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
           {/* ---- Portrait ---------------------------------------------- */}
@@ -125,9 +128,9 @@ export function About() {
             const Icon = STAT_ICONS[i] ?? Award;
             return (
               <StaggerItem key={stat.label}>
-                <div className="group h-full rounded-card border border-card bg-card/70 p-5 text-center shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:bg-card hover:shadow-lift md:p-6">
+                <div className="group h-full rounded-card border border-card bg-card/70 p-5 text-center shadow-card transition-all duration-300 ease-out-soft hover:-translate-y-1 hover:bg-card hover:shadow-lift md:p-6">
                   <span
-                    className={`mx-auto mb-4 grid size-12 place-items-center rounded-2xl transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-6 group-hover:scale-110 ${
+                    className={`mx-auto mb-4 grid size-12 place-items-center rounded-2xl transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-110 ${
                       TILE[stat.tone] ?? TILE.rose
                     }`}
                   >
