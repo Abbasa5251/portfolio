@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import { ArrowDown, ArrowRight, Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -10,24 +9,20 @@ import { SocialLinks } from "@/components/social-links";
 import { marqueeItems, site } from "@/lib/site-config";
 
 export function Hero() {
-  const reduced = useReducedMotion();
-
-  /* Each line of the headline rises in on load, one after the next.
-     `data-reveal` lets the <noscript> rule in the layout un-hide these if the
-     JS bundle never runs — Framer renders `opacity: 0` on the server. */
-  const line = (i: number) =>
-    reduced
-      ? {}
-      : {
-          "data-reveal": "",
-          initial: { opacity: 0, y: 26 },
-          animate: { opacity: 1, y: 0 },
-          transition: {
-            duration: 0.7,
-            delay: 0.08 * i,
-            ease: [0.22, 1, 0.36, 1] as const,
-          },
-        };
+  /**
+   * Each line of the hero copy rises in on load, one after the next — driven
+   * by CSS, not Framer Motion.
+   *
+   * This block is above the fold and contains the LCP element. A JS animation
+   * server-renders it at `opacity: 0`, which means the largest paint cannot
+   * happen until the bundle hydrates; that measured 1825ms of "element render
+   * delay" and was essentially the whole LCP. The CSS keyframe starts on the
+   * first frame after the stylesheet parses, so the text paints immediately.
+   *
+   * Reduced motion is handled by the global media query rather than
+   * `useReducedMotion`, because that hook also only resolves after hydration.
+   */
+  const line = (i: number) => ({ style: { animationDelay: `${0.08 * i}s` } });
 
   return (
     <section
@@ -48,7 +43,7 @@ export function Hero() {
         {/* ---- Copy ---------------------------------------------------- */}
         <div className="max-w-xl">
           {site.openToWork && (
-            <motion.div {...line(0)} className="mb-6">
+            <div {...line(0)} className="mb-6 animate-rise">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-mint bg-card/80 py-1.5 pl-2.5 pr-4 text-[0.8125rem] font-semibold text-ink shadow-card">
                 <span className="relative grid size-2.5 place-items-center">
                   <span className="absolute size-2.5 animate-ping rounded-full bg-live/70" />
@@ -56,41 +51,41 @@ export function Hero() {
                 </span>
                 {site.openToWorkLabel}
               </span>
-            </motion.div>
+            </div>
           )}
 
-          <motion.p
+          <p
             {...line(1)}
-            className="mb-3 font-display text-lg font-semibold text-rose-ink"
+            className="mb-3 animate-rise font-display text-lg font-semibold text-rose-ink"
           >
             Hi, I&apos;m Abbas
             <span className="ml-1.5 inline-block origin-[65%_85%] animate-wave">
               👋
             </span>
-          </motion.p>
+          </p>
 
-          <motion.h1
+          <h1
             {...line(2)}
-            className="text-[clamp(2.5rem,7.2vw,4.25rem)] font-extrabold leading-[1.04]"
+            className="animate-rise text-[clamp(2.5rem,7.2vw,4.25rem)] font-extrabold leading-[1.04]"
           >
             I build digital
             <br />
             products that{" "}
             <span className="underline-sketch text-rose">people love</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
+          <p
             {...line(3)}
-            className="mt-6 text-lg leading-relaxed text-body"
+            className="mt-6 animate-rise text-lg leading-relaxed text-body"
           >
             I&apos;m a full-stack developer who turns ideas into fast, scalable
             web and mobile apps — designed carefully, built to last, and shipped
             on the date I promised.
-          </motion.p>
+          </p>
 
-          <motion.div
+          <div
             {...line(4)}
-            className="mt-9 flex flex-wrap items-center gap-3"
+            className="mt-9 flex animate-rise flex-wrap items-center gap-3"
           >
             <Button asChild size="lg" className="group w-full sm:w-auto">
               <Link href="#work">
@@ -114,28 +109,23 @@ export function Hero() {
                 </a>
               </Button>
             )}
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             {...line(5)}
-            className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3"
+            className="mt-10 flex animate-rise flex-wrap items-center gap-x-5 gap-y-3"
           >
             <span className="text-sm font-semibold text-ink">
               Let&apos;s connect
             </span>
             <SocialLinks />
-          </motion.div>
+          </div>
         </div>
 
         {/* ---- Illustration -------------------------------------------- */}
-        <motion.div
-          initial={reduced ? undefined : { opacity: 0, scale: 0.94 }}
-          animate={reduced ? undefined : { opacity: 1, scale: 1 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="relative -mx-2 lg:mx-0"
-        >
+        <div className="relative -mx-2 animate-zoom-in lg:mx-0">
           <HeroScene className="mx-auto w-full max-w-136 lg:max-w-none" />
-        </motion.div>
+        </div>
       </div>
 
       {/* ---- Tech marquee -------------------------------------------- */}

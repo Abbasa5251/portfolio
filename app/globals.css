@@ -110,7 +110,41 @@
   --animate-wave: wave 2.6s ease-in-out infinite;
   --animate-marquee: marquee 38s linear infinite;
   --animate-sparkle: sparkle 3.2s ease-in-out infinite;
+  /**
+   * The hero entrance. Deliberately CSS and not Framer Motion: the hero copy
+   * is the LCP element, and a JS-driven `initial={{opacity:0}}` server-renders
+   * it invisible, so it cannot paint until the bundle has downloaded, parsed
+   * and hydrated. That cost measured 1825ms of pure "element render delay".
+   * CSS runs on the first frame after stylesheet parse, with no JS involved.
+   *
+   * `backwards` applies the 0% frame during the delay, so staggered lines stay
+   * hidden until their turn instead of flashing in and back out.
+   */
+  --animate-rise: rise 0.7s var(--ease-out-soft) backwards;
+  /** Same reasoning for the hero illustration — it is the other above-the-fold
+      candidate for the largest paint. */
+  --animate-zoom-in: zoom-in 0.85s var(--ease-out-soft) backwards;
 
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
   @keyframes float {
     0%,
     100% {
@@ -477,5 +511,10 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    /* Zeroing only the duration is not enough for a staggered entrance: with
+       `animation-fill-mode: backwards` the 0% frame — opacity 0 — is held for
+       the whole delay, so the hero copy would sit invisible for up to 0.4s and
+       then snap in. A negative delay starts every animation already finished. */
+    animation-delay: -1ms !important;
   }
 }
