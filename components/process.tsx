@@ -1,4 +1,10 @@
-import { Compass, FileText, PenTool, Ship, type LucideIcon } from "lucide-react";
+import {
+  Compass,
+  FileText,
+  PenTool,
+  Ship,
+  type LucideIcon,
+} from "lucide-react";
 
 import { SectionHeading } from "@/components/section-heading";
 import { Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -8,7 +14,10 @@ const ICONS: LucideIcon[] = [Compass, FileText, PenTool, Ship];
 
 export function Process() {
   return (
-    <section id="process" className="grain relative overflow-hidden bg-butter py-20 md:py-28">
+    <section
+      id="process"
+      className="grain relative overflow-hidden bg-butter py-20 md:py-28"
+    >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="How we'll work"
@@ -33,7 +42,7 @@ export function Process() {
             return (
               <StaggerItem key={step.step} className="h-full">
                 <div className="group relative flex h-full flex-col">
-                  <span className="relative z-10 grid size-13 place-items-center rounded-2xl bg-navy text-cream shadow-navy transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-6 group-hover:scale-110">
+                  <span className="relative z-10 grid size-13 place-items-center rounded-2xl bg-navy text-cream shadow-navy transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-110">
                     <Icon className="size-6" aria-hidden="true" />
                   </span>
 

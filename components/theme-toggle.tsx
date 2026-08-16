@@ -34,17 +34,17 @@ export function ThemeToggle({
         onNavy
           ? "border-white/15 bg-white/8 text-on-navy hover:border-white/35 hover:text-white"
           : "border-ink/12 bg-card/70 text-ink hover:border-ink/30 hover:bg-card",
-        className
+        className,
       )}
     >
       <span className="grid [grid-template-areas:'icon']">
         <Sun
           aria-hidden="true"
-          className="size-5 [grid-area:icon] rotate-0 scale-100 opacity-100 transition-all duration-300 ease-[var(--ease-spring)] group-hover:rotate-45 dark:-rotate-90 dark:scale-50 dark:opacity-0"
+          className="size-5 [grid-area:icon] rotate-0 scale-100 opacity-100 transition-all duration-300 ease-spring group-hover:rotate-45 dark:-rotate-90 dark:scale-50 dark:opacity-0"
         />
         <Moon
           aria-hidden="true"
-          className="size-5 [grid-area:icon] rotate-90 scale-50 opacity-0 transition-all duration-300 ease-[var(--ease-spring)] group-hover:dark:-rotate-12 dark:rotate-0 dark:scale-100 dark:opacity-100"
+          className="size-5 [grid-area:icon] rotate-90 scale-50 opacity-0 transition-all duration-300 ease-spring group-hover:dark:-rotate-12 dark:rotate-0 dark:scale-100 dark:opacity-100"
         />
       </span>
 

@@ -34,7 +34,7 @@ export function Contact() {
     (
       e: React.ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >
+      >,
     ) =>
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
@@ -123,7 +123,7 @@ export function Contact() {
             <div className="relative flex h-full flex-col overflow-hidden rounded-card bg-navy p-7 text-on-navy shadow-lift md:p-8">
               <div
                 aria-hidden
-                className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-white/[0.05]"
+                className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-white/5"
               />
 
               <HighFive className="relative mx-auto w-52 max-w-full" />
@@ -149,12 +149,12 @@ export function Contact() {
                       {href ? (
                         <Link
                           href={href}
-                          className="block break-words font-medium text-white underline-offset-4 hover:underline"
+                          className="block wrap-break-word font-medium text-white underline-offset-4 hover:underline"
                         >
                           {value}
                         </Link>
                       ) : (
-                        <span className="block break-words font-medium text-white">
+                        <span className="block wrap-break-word font-medium text-white">
                           {value}
                         </span>
                       )}

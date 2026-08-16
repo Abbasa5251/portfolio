@@ -42,7 +42,7 @@ export function Testimonials() {
           {visibleTestimonials.map((item) => (
             <StaggerItem key={item.id} className="h-full">
               <figure
-                className={`group flex h-full flex-col rounded-card p-7 transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift ${TONE[item.tone]}`}
+                className={`group flex h-full flex-col rounded-card p-7 transition-all duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift ${TONE[item.tone]}`}
               >
                 <div className="mb-5 flex items-center justify-between">
                   <Quote

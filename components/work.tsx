@@ -22,7 +22,10 @@ const WASH: Record<Tone, string> = {
 
 export function Work() {
   return (
-    <section id="work" className="grain relative overflow-hidden bg-cream py-20 md:py-28">
+    <section
+      id="work"
+      className="grain relative overflow-hidden bg-cream py-20 md:py-28"
+    >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="My work"
@@ -37,7 +40,7 @@ export function Work() {
         >
           {projects.map((project) => (
             <StaggerItem key={project.id} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
+              <article className="group flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card transition-all duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift">
                 {/* ---- Screenshot on a tinted stage ------------------- */}
                 <div
                   className={`relative overflow-hidden px-6 pt-7 ${WASH[project.tone]}`}
@@ -51,7 +54,7 @@ export function Work() {
                       /* All three cards are far below the fold. */
                       loading="lazy"
                       sizes="(min-width: 1024px) 26rem, (min-width: 768px) 45vw, 90vw"
-                      className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.04]"
+                      className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover:scale-[1.04]"
                     />
                   </div>
                 </div>

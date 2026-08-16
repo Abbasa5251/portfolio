@@ -29,7 +29,10 @@ const TONE: Record<Service["tone"], { tile: string; bar: string }> = {
 
 export function Services() {
   return (
-    <section id="services" className="grain relative overflow-hidden bg-lavender py-20 md:py-28">
+    <section
+      id="services"
+      className="grain relative overflow-hidden bg-lavender py-20 md:py-28"
+    >
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="What I do"
@@ -48,15 +51,15 @@ export function Services() {
 
             return (
               <StaggerItem key={service.id} className="h-full">
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-card bg-card p-6 shadow-card transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-1.5 hover:shadow-lift">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-card bg-card p-6 shadow-card transition-all duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift">
                   {/* Accent bar wipes across on hover */}
                   <span
                     aria-hidden
-                    className={`absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-x-100 ${tone.bar}`}
+                    className={`absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-500 ease-out-soft group-hover:scale-x-100 ${tone.bar}`}
                   />
 
                   <span
-                    className={`mb-5 grid size-13 place-items-center rounded-2xl transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-6 group-hover:scale-110 ${tone.tile}`}
+                    className={`mb-5 grid size-13 place-items-center rounded-2xl transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-110 ${tone.tile}`}
                   >
                     <Icon className="size-6" aria-hidden="true" />
                   </span>

@@ -16,7 +16,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
     <NextThemeProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="light"
       enableSystem
       /* Suppresses transitions for one frame while swapping themes — without it
          every colour token animates at once and the switch looks like a smear. */
