@@ -56,6 +56,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Abbasa5251/adev-devsearch",
     image: "/devsearch.webp",
     tone: "blush",
+    featured: true,
   },
   {
     id: 4,
@@ -68,6 +69,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Abbasa5251/ai-resume-scanner",
     image: "/AI-resume-scanner.webp",
     tone: "mint",
+    featured: false,
   },
 ];
 
