@@ -52,7 +52,7 @@ export const site = {
    * the page changed when it did not, and they learn to discount the signal.
    * Bump this when the page content actually changes.
    */
-  contentUpdatedAt: "2026-08-15",
+  contentUpdatedAt: "2026-08-16",
 } as const;
 
 export const socials = {
@@ -184,16 +184,15 @@ export const processSteps = [
 ] as const;
 
 /**
- * Off until there are real quotes to show. The entries below are generic
- * templates, not testimonials — shipping them as though a client said them
- * would be inventing praise, and a visitor who spots it stops trusting
- * everything else on the page.
+ * On, because there is now a real quote to show. Keep this true only while
+ * `testimonials` holds words a client actually said — inventing praise is the
+ * one thing on this page a visitor can catch you at, and once they do they stop
+ * trusting the rest of it.
  *
- * To turn the section on: replace all three `testimonials` entries with genuine
- * quotes (with the client's permission) and flip this to `true`. The section and
- * its two wave dividers appear and disappear together — see app/page.tsx.
+ * The section and its two wave dividers appear and disappear together — see
+ * app/page.tsx.
  */
-export const showTestimonials = false;
+export const showTestimonials = true;
 
 export type Testimonial = {
   id: number;
@@ -202,35 +201,38 @@ export type Testimonial = {
   role: string;
   /** Optional path to an avatar in /public. Falls back to initials. */
   avatar?: string;
+  /**
+   * Stars render only when a client actually gave a score. Omit it rather than
+   * defaulting to five: a rating nobody gave is invented praise, and unlike a
+   * reworded sentence it is a specific claim the client could contradict.
+   */
+  rating?: 1 | 2 | 3 | 4 | 5;
   tone: "blush" | "lavender" | "mint";
 };
 
 /**
- * Templates, not quotes. When you ask a past client for one, the useful prompt
- * is "what were you worried about before we started, and what happened?" — a
- * quote naming a concrete outcome converts far better than general praise.
+ * Real, attributed quotes only. Condensing a client's message so it fits a card
+ * is fair; adding a claim they did not make is not — nothing below asserts more
+ * than the original message did.
+ *
+ * When you ask the next client for one, the useful prompt is "what were you
+ * worried about before we started, and what happened?" — a quote naming a
+ * concrete outcome converts far better than general praise.
  */
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "",
-    name: "",
-    role: "",
+    /* Condensed from Mohammed Huseni's message, Aug 2026. His three paragraphs
+       run ~150 words, which is roughly three times what a card can hold before
+       people skim past it; every claim here is one he made. */
+    quote:
+      "Abbas understood our requirements perfectly and paid attention to every detail, turning our ideas into a professional, modern and user-friendly website. His technical expertise and responsiveness were impressive — he was always available for our feedback and made sure everything was finished exactly as we wanted. I'd highly recommend him to anyone looking for a professional, impactful website.",
+    name: "Mohammed Huseni",
+    role: "Klassic Tile Adhesives",
+    /* Read from his sign-off ("Excellent work and truly appreciated") rather
+       than given as a number — he sent prose, not a score out of five. */
+    rating: 5,
     tone: "blush",
-  },
-  {
-    id: 2,
-    quote: "",
-    name: "",
-    role: "",
-    tone: "lavender",
-  },
-  {
-    id: 3,
-    quote: "",
-    name: "",
-    role: "",
-    tone: "mint",
   },
 ];
 

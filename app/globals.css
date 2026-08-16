@@ -251,7 +251,10 @@
   --accent-violet: #8b7cf6;
   --accent-amber: #eab308;
   --accent-green: #22c55e;
-  --accent-star: #f59e0b;
+  /* A star rating carries meaning, so it is a graphic that has to clear 3:1
+     against the card (SC 1.4.11) — the usual bright amber (#f59e0b) manages
+     only 1.87 on blush. This holds 3.55–3.69 across all three card tones. */
+  --accent-star: #c2610a;
   --accent-live: #1f9d43;
 
   --line: #efe3e9;

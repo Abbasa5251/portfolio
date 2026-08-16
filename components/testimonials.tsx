@@ -11,6 +11,45 @@ const TONE: Record<Testimonial["tone"], string> = {
   mint: "bg-mint",
 };
 
+/**
+ * The grid tracks how many quotes there are instead of always being three
+ * columns. One testimonial in a 3-col grid renders as a third-width card
+ * marooned on the left, which reads as "two are missing" rather than "here is
+ * the one we have". Centred and capped, it reads as deliberate.
+ */
+const LAYOUT: Record<number, string> = {
+  1: "max-w-2xl",
+  2: "max-w-4xl md:grid-cols-2",
+};
+
+/**
+ * Five positions, the first `value` of them filled. Showing only the earned
+ * stars would leave "4" with no denominator to read it against.
+ *
+ * Empty stars are an outline in a body-text colour rather than a faded amber:
+ * they carry the rating just as much as the filled ones do, so they have to
+ * clear 3:1 against the card (SC 1.4.11), and a tint of the fill never will.
+ */
+function StarRating({ value }: { value: number }) {
+  return (
+    <div
+      role="img"
+      aria-label={`Rated ${value} out of 5`}
+      className="flex gap-0.5"
+    >
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className={
+            i < value ? "size-4 fill-star text-star" : "size-4 text-ink-soft"
+          }
+          aria-hidden="true"
+        />
+      ))}
+    </div>
+  );
+}
+
 function initialsOf(name: string) {
   return name
     .split(" ")
@@ -36,7 +75,9 @@ export function Testimonials() {
         />
 
         <Stagger
-          className="mt-14 grid gap-6 md:mt-16 md:grid-cols-3"
+          className={`mx-auto mt-14 grid gap-6 md:mt-16 ${
+            LAYOUT[visibleTestimonials.length] ?? "md:grid-cols-3"
+          }`}
           gap={0.12}
         >
           {visibleTestimonials.map((item) => (
@@ -49,22 +90,13 @@ export function Testimonials() {
                     className="size-8 rotate-180 text-rose/35 transition-colors duration-300 group-hover:text-rose/60"
                     aria-hidden="true"
                   />
-                  {/* `role="img"` is required for aria-label to be valid on a
-                      generic container — five loose <svg>s otherwise announce
-                      as nothing at all. */}
-                  <div
-                    role="img"
-                    aria-label="Rated 5 out of 5"
-                    className="flex gap-0.5"
-                  >
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="size-4 fill-star text-star"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
+                  {/* Only when the client actually gave a score — see the note
+                      on `rating` in site-config.
+
+                      `role="img"` is required for aria-label to be valid on a
+                      generic container; five loose <svg>s otherwise announce as
+                      nothing at all. */}
+                  {item.rating && <StarRating value={item.rating} />}
                 </div>
 
                 <blockquote className="flex-1 text-[1.0625rem] leading-relaxed text-ink-soft">
