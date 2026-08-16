@@ -234,6 +234,20 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     tone: "blush",
   },
+  {
+    id: 2,
+    /* Condensed from the Salon Ledger owner's message, Aug 2026. Held back from
+       the page until `name` is filled in: `visibleTestimonials` drops any entry
+       without one, so this renders nothing rather than something anonymous.
+       Attributing a real quote to nobody is the one thing worse than not
+       running it — fill in name and role and it goes live as-is. */
+    quote:
+      "Abbas took the time to understand how our salon actually operates, rather than fitting us into generic software. Staff enter a service in seconds, and the owner section gives me the visibility I need into collections, margins and commissions without complicating anything. It runs locally too — no accounts, no subscriptions, no constant internet. The final product feels built specifically for our business.",
+    name: "",
+    role: "",
+    rating: 5,
+    tone: "lavender",
+  },
 ];
 
 /**
