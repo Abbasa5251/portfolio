@@ -81,10 +81,10 @@ export const projects: Project[] = [
 export const youtubeVideos: YouTubeVideo[] = [
   {
     id: 1,
-    title: "Getting Started with Python for Beginners — Installing Python",
+    title: "Getting Started with Python for Beginners - Installing Python on Windows",
     description:
       "Start learning Python from scratch. Install the latest version of Python on Windows and run your first script from the command prompt.",
-    views: "195 views",
+    views: "198 views",
     duration: "3:21",
     thumbnail:
       "https://i.ytimg.com/vi/2a0eTiMUh9k/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCtAzSZ0AUSfmUSSk8KyfVhVANpvw",
@@ -95,7 +95,7 @@ export const youtubeVideos: YouTubeVideo[] = [
     title: "Download Instagram Profile Pictures using Python",
     description:
       "Download the profile picture of any Instagram user from their username, using Python's Requests module.",
-    views: "596 views",
+    views: "601 views",
     duration: "10:06",
     thumbnail:
       "https://i.ytimg.com/vi/uMtZlrP5LOw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAQC1Y5_2IxGMV48gnBPKwsB1y6Vw",
@@ -106,7 +106,7 @@ export const youtubeVideos: YouTubeVideo[] = [
     title: "Getting started with Django",
     description:
       "A walkthrough of getting up and running with Django, the Python web framework built for rapid, clean development.",
-    views: "99 views",
+    views: "102 views",
     duration: "5:29",
     thumbnail:
       "https://i.ytimg.com/vi/oQt9yRXn_d4/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIfZ8BlXqJtQY83aHfl52IuRYv_Q",
