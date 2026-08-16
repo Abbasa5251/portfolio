@@ -42,7 +42,7 @@ export function Process() {
             return (
               <StaggerItem key={step.step} className="h-full">
                 <div className="group relative flex h-full flex-col">
-                  <span className="relative z-10 grid size-13 place-items-center rounded-2xl bg-navy text-cream shadow-navy transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-110">
+                  <span className="relative z-10 grid size-13 place-items-center rounded-2xl bg-navy text-white shadow-navy transition-transform duration-300 ease-spring group-hover:-rotate-6 group-hover:scale-110">
                     <Icon className="size-6" aria-hidden="true" />
                   </span>
 

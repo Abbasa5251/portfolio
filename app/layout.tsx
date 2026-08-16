@@ -80,10 +80,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fff8f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#14121f" },
-  ],
+  /* Light is the default for everyone, so the initial value is the light band
+     rather than a `prefers-color-scheme` pair — the OS no longer decides which
+     theme renders. ThemeColorSync updates this at runtime when the visitor
+     toggles. */
+  themeColor: "#fff8f2",
   colorScheme: "light dark",
 };
 

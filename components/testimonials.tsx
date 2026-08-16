@@ -83,7 +83,7 @@ export function Testimonials() {
                   ) : (
                     <span
                       aria-hidden
-                      className="grid size-11 shrink-0 place-items-center rounded-full bg-navy font-display text-sm font-bold text-cream"
+                      className="grid size-11 shrink-0 place-items-center rounded-full bg-navy font-display text-sm font-bold text-white"
                     >
                       {initialsOf(item.name)}
                     </span>
