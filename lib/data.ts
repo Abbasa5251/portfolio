@@ -39,7 +39,7 @@ export const projects: Project[] = [
     description:
       "A collaborative video conferencing app with real-time rooms, scheduled meetings and recordings.",
     tech: ["Next.js", "TypeScript", "Stream.io", "Tailwind CSS", "Clerk"],
-    liveUrl: "https://zoom-clone-chi-swart.vercel.app/",
+    liveUrl: null,
     githubUrl: "https://github.com/Abbasa5251/zoom-clone",
     image: "/zoom-clone.webp",
     tone: "lavender",
