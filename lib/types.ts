@@ -8,8 +8,8 @@ export interface Project {
   description: string;
   image: string;
   tech: string[];
-  liveUrl: string;
-  githubUrl: string;
+  liveUrl: string | null;
+  githubUrl: string | null;
   /** Background wash behind the screenshot on the work card. */
   tone: Tone;
   /** Optional — highlights the card as the lead case study. */

@@ -31,7 +31,9 @@ export function Work() {
           eyebrow="My work"
           title="Selected"
           accent="work"
-          description="A few things I've built end to end — interface, API and infrastructure. Each one shipped, deployed and open-sourced."
+          /* Not "open-sourced" any more: client work ships without a public
+             repo, which is exactly why githubUrl is nullable. */
+          description="A few things I've built end to end — interface, API and infrastructure. Each one shipped, deployed and running in production."
         />
 
         <Stagger
@@ -85,7 +87,7 @@ export function Work() {
                   </ul>
 
                   <div className="mt-6 flex flex-wrap items-center gap-2">
-                    {project.liveUrl ? (
+                    {project.liveUrl && (
                       <Button asChild size="sm" className="group/btn">
                         <Link
                           href={project.liveUrl}
@@ -100,26 +102,24 @@ export function Work() {
                           </span>
                         </Link>
                       </Button>
-                    ) : (
-                      <span className="rounded-xl bg-cream-deep px-3.5 py-2.5 text-xs font-semibold text-body">
-                        Source only
-                      </span>
                     )}
 
-                    <Button asChild size="sm" variant="outline">
-                      <Link
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GithubIcon />
-                        Code
-                        <span className="sr-only">
-                          {" "}
-                          for {project.title} (opens in a new tab)
-                        </span>
-                      </Link>
-                    </Button>
+                    {project.githubUrl && (
+                      <Button asChild size="sm" variant="outline">
+                        <Link
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <GithubIcon />
+                          Code
+                          <span className="sr-only">
+                            {" "}
+                            for {project.title} (opens in a new tab)
+                          </span>
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </article>

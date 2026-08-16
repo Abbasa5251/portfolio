@@ -3,6 +3,19 @@ import { Project, YouTubeVideo } from "./types";
 export const projects: Project[] = [
   {
     id: 1,
+    title: "Klassic Tile Adhesives",
+    category: "Marketing Website",
+    description:
+      "A marketing website for Klassic Tile Adhesives, a company that sells tile adhesives.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Shadcn UI"],
+    liveUrl: "https://klassictilesadhesives.com/",
+    githubUrl: null,
+    image: "/klassictileadhesives.webp",
+    tone: "butter",
+    featured: false,
+  },
+  {
+    id: 2,
     title: "ADev Zoom",
     category: "Video & Collaboration",
     description:
@@ -15,7 +28,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
     title: "ADev Devsearch",
     category: "Developer Community",
     description:
@@ -27,7 +40,7 @@ export const projects: Project[] = [
     tone: "blush",
   },
   {
-    id: 3,
+    id: 4,
     title: "AI Resume Scanner",
     category: "AI & Automation",
     description:
