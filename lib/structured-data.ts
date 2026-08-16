@@ -119,24 +119,33 @@ export function homePageSchema() {
       {
         "@type": "ItemList",
         name: "Selected work",
-        itemListElement: projects.map((project, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          item: {
-            "@type": "SoftwareApplication",
-            name: project.title,
-            description: project.description,
-            applicationCategory: project.category,
-            url: project.liveUrl || project.githubUrl,
-            image: `${site.siteUrl}${project.image}`,
-            author: { "@id": PERSON_ID },
-            offers: {
-              "@type": "Offer",
-              price: 0,
-              priceCurrency: "USD",
+        itemListElement: projects.map((project, i) => {
+          /* Mobile projects have no landscape screenshot, so fall back to the
+             centre phone screen. Without this the empty `image` concatenates to
+             a bare site URL and the entry claims the homepage is its image. */
+          const preview = project.image || project.phoneScreens?.[1]?.src;
+          /* Client work ships with neither a public build nor a public repo, and
+             a ListItem with `url: null` is worse than one with no url at all. */
+          const url = project.liveUrl || project.githubUrl;
+
+          return {
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "SoftwareApplication",
+              name: project.title,
+              description: project.description,
+              applicationCategory: project.category,
+              ...(url ? { url } : {}),
+              ...(preview ? { image: `${site.siteUrl}${preview}` } : {}),
+              author: { "@id": PERSON_ID },
+              /* No `offers`. It used to declare price 0 for every project, which
+                 is a specific and now false claim — Salon Ledger is sold per
+                 device per year. These are case studies, not listings, so the
+                 honest move is to state no price rather than the wrong one. */
             },
-          },
-        })),
+          };
+        }),
       },
     ],
   };
