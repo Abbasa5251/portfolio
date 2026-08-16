@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { GithubIcon } from "@/components/brand-icons";
+import { PhoneTrio } from "@/components/phone-trio";
 
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
@@ -47,18 +48,30 @@ export function Work() {
                 <div
                   className={`relative overflow-hidden px-6 pt-7 ${WASH[project.tone]}`}
                 >
-                  <div className="overflow-hidden rounded-t-xl shadow-[0_-2px_20px_-6px_rgb(22_32_92/0.25)] ring-1 ring-ink/8">
-                    <Image
-                      src={project.image}
-                      alt={`Screenshot of ${project.title}`}
-                      width={800}
-                      height={500}
-                      /* All three cards are far below the fold. */
-                      loading="lazy"
-                      sizes="(min-width: 1024px) 26rem, (min-width: 768px) 45vw, 90vw"
-                      className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover:scale-[1.04]"
+                  {project.phoneScreens ? (
+                    /* Mobile projects get the fanned phone trio. It composes to
+                       the same 16:10 box, so the grid stays uniform — but it
+                       sits directly on the wash with no frame, because a phone
+                       already reads as a device and boxing it looks like a
+                       screenshot of a screenshot. */
+                    <PhoneTrio
+                      screens={project.phoneScreens}
+                      appName={project.title}
                     />
-                  </div>
+                  ) : (
+                    <div className="overflow-hidden rounded-t-xl shadow-[0_-2px_20px_-6px_rgb(22_32_92/0.25)] ring-1 ring-ink/8">
+                      <Image
+                        src={project.image}
+                        alt={`Screenshot of ${project.title}`}
+                        width={800}
+                        height={500}
+                        /* All three cards are far below the fold. */
+                        loading="lazy"
+                        sizes="(min-width: 1024px) 26rem, (min-width: 768px) 45vw, 90vw"
+                        className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* ---- Body ------------------------------------------- */}

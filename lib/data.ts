@@ -1,6 +1,26 @@
 import { Project, YouTubeVideo } from "./types";
 
 export const projects: Project[] = [
+  /* Salon Ledger goes here once there are real device captures to point at.
+     The card renders via `phoneScreens` (see PhoneTrio) rather than `image`:
+        {
+          id: 0,
+          title: "Salon Ledger",
+          category: "Mobile App",
+          description:
+            "A local-first ledger for salon counters: staff log services in seconds, the owner sees collections, margins and commissions behind a PIN.",
+          tech: ["React Native", "Expo", "TypeScript", "SQLite"],
+          liveUrl: null, githubUrl: null, image: "",
+          phoneScreens: [
+            { src: "/salon-entry.webp", label: "New Entry" },
+            { src: "/salon-leaderboard.webp", label: "Leaderboard" },
+            { src: "/salon-owner.webp", label: "Owner Dashboard" },
+          ],
+          tone: "mint",
+        }
+     Not filled in from `stitch_salon_ledger_pro/` — those are pre-build design
+     mockups, not the app: the leaderboard one is denominated in dollars while
+     the shipped app is ₹ INR throughout. */
   {
     id: 1,
     title: "Klassic Tile Adhesives",
