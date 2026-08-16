@@ -228,7 +228,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "Abbas understood our requirements perfectly and paid attention to every detail, turning our ideas into a professional, modern and user-friendly website. His technical expertise and responsiveness were impressive — he was always available for our feedback and made sure everything was finished exactly as we wanted. I'd highly recommend him to anyone looking for a professional, impactful website.",
     name: "Mohammed Huseni",
-    role: "Klassic Tile Adhesives",
+    role: "Founder, Klassic Tile Adhesives",
     /* Read from his sign-off ("Excellent work and truly appreciated") rather
        than given as a number — he sent prose, not a score out of five. */
     rating: 5,
@@ -243,8 +243,8 @@ export const testimonials: Testimonial[] = [
        running it — fill in name and role and it goes live as-is. */
     quote:
       "Abbas took the time to understand how our salon actually operates, rather than fitting us into generic software. Staff enter a service in seconds, and the owner section gives me the visibility I need into collections, margins and commissions without complicating anything. It runs locally too — no accounts, no subscriptions, no constant internet. The final product feels built specifically for our business.",
-    name: "",
-    role: "",
+    name: "Shrikant Shinde",
+    role: "Owner, Hair Icon Professional",
     rating: 5,
     tone: "lavender",
   },
