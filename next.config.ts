@@ -19,9 +19,17 @@ import type { NextConfig } from "next";
    `/_next/image` rather than fetched from i.ytimg.com by the browser. The
    remote entry below is only a fallback for an unoptimised image.
 --------------------------------------------------------------------------- */
+
+/* React calls eval() in development to rebuild callstacks that crossed the
+   server/client boundary, so a policy without 'unsafe-eval' breaks `next dev`
+   with "eval() is not supported in this environment". React never evals in a
+   production build, so the allowance is scoped to dev and the deployed policy
+   stays strict. */
+const isDev = process.env.NODE_ENV === "development";
+
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://i.ytimg.com",
   "font-src 'self' data:",
