@@ -62,7 +62,7 @@ export function SectionWave({
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"
         role="presentation"
-        className={cn("block h-[52px] w-full md:h-[92px]", FILL[to])}
+        className={cn("block h-13 w-full md:h-23", FILL[to])}
       >
         <path d={PATHS[variant]} fill="currentColor" />
       </svg>

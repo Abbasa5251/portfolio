@@ -34,7 +34,7 @@ export function Process() {
               26px is the vertical centre of the 52px icon tiles. */}
           <span
             aria-hidden
-            className="absolute left-0 right-0 top-[26px] hidden border-t-2 border-dashed border-ink/15 lg:block"
+            className="absolute left-0 right-0 top-6.5 hidden border-t-2 border-dashed border-ink/15 lg:block"
           />
 
           {processSteps.map((step, i) => {
