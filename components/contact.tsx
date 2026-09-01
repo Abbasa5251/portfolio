@@ -17,8 +17,8 @@ import { services, site } from "@/lib/site-config";
 
 const BUDGETS = [
   "Under ₹50k",
-  "₹50k – ₹1.5L",
-  "₹1.5L – ₹4L",
+  "₹50k - ₹1.5L",
+  "₹1.5L - ₹4L",
   "₹4L+",
   "Not sure yet",
 ];
@@ -308,6 +308,22 @@ export function Contact() {
                     </>
                   )}
                 </Button>
+
+                {/* Says plainly what happens to what was just typed. A form
+                    that asks for a name and an email without ever explaining
+                    where they go is the shape browsers and visitors alike read
+                    as phishing — and the answer here is genuinely reassuring,
+                    so there is no reason to leave it unsaid. */}
+                <p className="text-center text-sm text-body">
+                  Goes straight to me — never shared, never added to a mailing
+                  list.{" "}
+                  <Link
+                    href="/privacy"
+                    className="font-medium text-rose-ink underline underline-offset-4 hover:no-underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                </p>
 
                 {/* Politely announces the sending state to screen readers. */}
                 <p aria-live="polite" className="sr-only">
