@@ -130,10 +130,18 @@ export function SiteFooter() {
 
         {/* ---- Bottom bar --------------------------------------------- */}
         <div className="mt-14 flex flex-col-reverse items-center justify-between gap-5 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-center text-sm sm:text-left">
-            © {year} {site.name}. Built with <span aria-hidden>💙</span>
-            <span className="sr-only">love</span> by {youtubeChannel.name}.
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-5">
+            <p className="text-center text-sm sm:text-left">
+              © {year} {site.name}. Built with <span aria-hidden>💙</span>
+              <span className="sr-only">love</span> by {youtubeChannel.name}.
+            </p>
+            <Link
+              href="/privacy"
+              className="text-sm font-medium text-white underline-offset-4 hover:underline"
+            >
+              Privacy Policy
+            </Link>
+          </div>
 
           <Link
             href="#top"
