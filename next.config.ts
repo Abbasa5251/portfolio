@@ -18,6 +18,13 @@ import type { NextConfig } from "next";
    Google fonts at build time, and YouTube thumbnails are re-served through
    `/_next/image` rather than fetched from i.ytimg.com by the browser. The
    remote entry below is only a fallback for an unoptimised image.
+
+   The one third-party exception is Cloudflare Web Analytics. Cloudflare
+   injects its beacon into every HTML response at the edge, and until Sept
+   2026 this policy silently refused it — so the site had analytics switched
+   on in the dashboard, a CSP error in every console, and no data. The beacon
+   host and the endpoint it reports to are allowed by name; the privacy page
+   describes what it collects (cookieless, aggregate page views).
 --------------------------------------------------------------------------- */
 
 /* React calls eval() in development to rebuild callstacks that crossed the
@@ -29,13 +36,13 @@ const isDev = process.env.NODE_ENV === "development";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://i.ytimg.com",
   "font-src 'self' data:",
-  /* Same-origin only: the contact form posts to /api/contact and the router
-     prefetches its own RSC payloads. */
-  "connect-src 'self'",
+  /* The contact form posts to /api/contact, the router prefetches its own RSC
+     payloads, and the analytics beacon reports to cloudflareinsights.com. */
+  "connect-src 'self' https://cloudflareinsights.com",
   /* The page embeds nothing and must not be embedded — clickjacking a contact
      form is exactly the "trick visitors into sharing personal info" pattern. */
   "frame-src 'none'",

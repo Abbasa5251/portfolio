@@ -31,10 +31,12 @@ const PHONE_ASPECT = "0.462";
 
 function Phone({
   screen,
+  appName,
   className,
   style,
 }: {
   screen: PhoneScreen;
+  appName: string;
   className?: string;
   style?: React.CSSProperties;
 }) {
@@ -53,9 +55,11 @@ function Phone({
       <div className="relative size-full overflow-hidden rounded-[11%/5.1%] bg-card">
         <Image
           src={screen.src}
-          /* Decorative individually — the group below carries one alt for all
-             three, so screen readers hear one description, not three. */
-          alt=""
+          /* The group below is `role="img"` with its own label, so assistive
+             tech reads one description and never reaches these. The alt is for
+             image search and AI crawlers, which index each file on its own and
+             would otherwise see three unnamed screenshots. */
+          alt={`${appName} — ${screen.label} screen`}
           fill
           sizes="(min-width: 1024px) 9rem, (min-width: 768px) 15vw, 30vw"
           className="object-cover object-top"
@@ -92,6 +96,7 @@ export function PhoneTrio({
     >
       <Phone
         screen={left}
+        appName={appName}
         /* Negative rotation tips the top away from centre. On hover the pair
            splay a further 3°, which reads as the group opening up rather than
            the whole card zooming — the flat screenshots already do that. */
@@ -101,6 +106,7 @@ export function PhoneTrio({
 
       <Phone
         screen={right}
+        appName={appName}
         className="rounded-[12.5%/5.8%] p-[1.6%] transition-transform duration-500 ease-out-soft group-hover:rotate-13"
         style={{ ...sideStyle, right: "4%", transform: "rotate(10deg)" }}
       />
@@ -108,6 +114,7 @@ export function PhoneTrio({
       {/* Last in the DOM so it stacks in front without needing a z-index. */}
       <Phone
         screen={centre}
+        appName={appName}
         className="rounded-[12%/5.5%] p-[1.5%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-1.5"
         style={{ ...midStyle, left: "50%", transform: "translateX(-50%)" }}
       />

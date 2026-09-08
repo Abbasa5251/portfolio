@@ -16,7 +16,7 @@ import { site } from "@/lib/site-config";
  */
 
 /** Bump whenever the wording below changes materially. */
-const UPDATED = "1 September 2026";
+const UPDATED = "8 September 2026";
 
 const title = "Privacy Policy";
 const description =
@@ -81,9 +81,10 @@ export default function PrivacyPage() {
           <p className="mt-4 text-[1.0625rem] leading-relaxed text-body">
             This site is the portfolio of {site.name}, a freelance developer
             based in {site.location}. It is a single page with one contact form
-            and no advertising, no analytics and no tracking of any kind. This
-            page explains, in plain language, the only place where personal
-            information changes hands.
+            and no advertising, no tracking cookies and no profiling of any
+            kind; the only measurement is an anonymous, cookieless page-view
+            count, described below. This page explains, in plain language, the
+            only place where personal information changes hands.
           </p>
           <p className="mt-3 text-sm text-body">Last updated: {UPDATED}</p>
 
@@ -134,10 +135,18 @@ export default function PrivacyPage() {
 
           <Section heading="Cookies and tracking">
             <p>
-              This site sets no tracking cookies and runs no analytics,
-              advertising or fingerprinting scripts. There is no Google
-              Analytics, no advertising pixel and no third-party session
-              recorder.
+              This site sets no tracking cookies and runs no advertising or
+              fingerprinting scripts. There is no Google Analytics, no
+              advertising pixel and no third-party session recorder.
+            </p>
+            <p>
+              The one measurement tool is Cloudflare Web Analytics, a
+              privacy-first counter added by the host. It records that a page
+              was viewed, roughly where in the world the request came from, the
+              browser family and the referring site — as aggregate totals, with
+              no cookie, no persistent identifier and no attempt to recognise
+              you across visits or across other websites. It tells me how many
+              people read the page; it cannot tell me who.
             </p>
             <p>
               The one thing stored in your browser is your light or dark theme

@@ -52,7 +52,17 @@ export const site = {
    * the page changed when it did not, and they learn to discount the signal.
    * Bump this when the page content actually changes.
    */
-  contentUpdatedAt: "2026-08-16",
+  contentUpdatedAt: "2026-09-08",
+
+  /**
+   * One self-contained paragraph that answers "who is this and what do they
+   * do" without any surrounding context. It is what an AI assistant or a
+   * search snippet lifts when someone asks for a freelance developer, so it
+   * names the person, the place, the stack and the way of working in plain
+   * prose. Reused by the JSON-LD Person and by /llms.txt.
+   */
+  summary:
+    "Abbas Anandwala is a freelance full-stack developer based in Baramati, near Pune in Maharashtra, India, who builds web and mobile apps for clients worldwide with React, Next.js, TypeScript, Node.js, Django, React Native and PostgreSQL. Every project is quoted at a fixed price, demoed weekly on a live link and handed over with documentation and 30 days of support. He also runs the ADev Tutorials YouTube channel.",
 } as const;
 
 export const socials = {
@@ -274,6 +284,49 @@ export const marqueeItems = [
   "Tailwind CSS",
   "Figma",
 ] as const;
+
+export type Faq = { question: string; answer: string };
+
+/**
+ * Rendered as the FAQ section and emitted as FAQPage JSON-LD. Each answer is
+ * written to stand alone at 40–60 words — the passage length AI search engines
+ * lift verbatim — and leads with the answer rather than building up to it.
+ * Nothing here claims more than the rest of the site does: reply times, the
+ * budget bands, the 30-day aftercare and the discovery call are all taken from
+ * the process steps and the contact form.
+ */
+export const faqs: Faq[] = [
+  {
+    question: "What kind of projects does Abbas Anandwala take on?",
+    answer:
+      "Abbas builds web apps with React and Next.js, backend APIs with Node.js or Django on PostgreSQL, and cross-platform mobile apps with React Native and Expo. He also takes on performance and maintenance work on existing codebases. Typical clients are small businesses and founders who want one accountable developer for the whole stack.",
+  },
+  {
+    question: "Where is Abbas based, and does he work with clients outside India?",
+    answer:
+      "Abbas is a freelance full-stack developer based in Baramati, near Pune in Maharashtra, India, and works remotely with clients worldwide. Communication happens over email, WhatsApp or video calls, with weekly demos on a live staging link, so a time-zone gap never blocks progress.",
+  },
+  {
+    question: "How much does a project cost?",
+    answer:
+      "Every project is quoted as a fixed price after a free 30-minute discovery call, so there are no open-ended hourly bills. The written scope lists what ships, in what order, by when and for how much. The contact form asks for a rough budget band, from under ₹50,000 to ₹4 lakh and above, only to size the first conversation.",
+  },
+  {
+    question: "What happens after I send an enquiry?",
+    answer:
+      "Abbas reads every enquiry himself and replies within a day. The next step is a free 30-minute discovery call to understand the problem, your users and what success looks like. After that you receive a written plan and a fixed quote, and if it fits, the build starts with weekly demos on a live link.",
+  },
+  {
+    question: "Will my team be able to maintain the code after handover?",
+    answer:
+      "Yes. Every project ships with handover documentation and 30 days of post-launch support, and the code is written in mainstream, well-documented tools such as TypeScript, Next.js, Django and PostgreSQL. Another developer or an in-house team can take it over without a rewrite.",
+  },
+  {
+    question: "What is ADev Tutorials?",
+    answer:
+      "ADev Tutorials is Abbas Anandwala's YouTube channel, where he teaches Python, Django and web development to beginners using the same stack he ships client work with. Watching a couple of videos is the quickest way to judge how he thinks and explains things before hiring him.",
+  },
+];
 
 export const navItems = [
   { name: "Home", href: "#top" },

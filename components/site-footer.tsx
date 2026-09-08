@@ -7,6 +7,13 @@ import { navItems, services, site, youtubeChannel } from "@/lib/site-config";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  /* Visible freshness signal, fed from the same date as the sitemap and the
+     JSON-LD so the three can never disagree. */
+  const updated = new Date(site.contentUpdatedAt).toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 
   return (
     <footer className="grain relative overflow-hidden bg-navy text-on-navy">
@@ -141,6 +148,10 @@ export function SiteFooter() {
             >
               Privacy Policy
             </Link>
+            <p className="text-sm">
+              Last updated{" "}
+              <time dateTime={site.contentUpdatedAt}>{updated}</time>
+            </p>
           </div>
 
           <Link

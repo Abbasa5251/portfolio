@@ -1,5 +1,5 @@
 import { projects } from "@/lib/data";
-import { services, site, socials, youtubeChannel } from "@/lib/site-config";
+import { faqs, services, site, socials } from "@/lib/site-config";
 
 /**
  * JSON-LD for the home page.
@@ -14,6 +14,8 @@ import { services, site, socials, youtubeChannel } from "@/lib/site-config";
 const PERSON_ID = `${site.siteUrl}/#person`;
 const SITE_ID = `${site.siteUrl}/#website`;
 const BUSINESS_ID = `${site.siteUrl}/#business`;
+const PAGE_ID = `${site.siteUrl}/#webpage`;
+const FAQ_ID = `${site.siteUrl}/#faq`;
 
 function sameAs() {
   return [
@@ -37,12 +39,15 @@ export function homePageSchema() {
         "@type": "Person",
         "@id": PERSON_ID,
         name: site.name,
+        alternateName: site.brand,
         jobTitle: site.role,
-        description: `Freelance full-stack developer building web and mobile products with React, Next.js, Node and Python. Runs the ${youtubeChannel.name} YouTube channel.`,
+        description: site.summary,
         url: site.siteUrl,
         email: `mailto:${site.email}`,
         telephone: site.phone,
-        image: `${site.siteUrl}/opengraph-image`,
+        /* The actual portrait, not the share card: entity matching (knowledge
+           panels, AI assistants) wants a photo of the person. */
+        image: `${site.siteUrl}/abbas-headshot.webp`,
         address: {
           "@type": "PostalAddress",
           addressLocality: city,
@@ -71,7 +76,37 @@ export function homePageSchema() {
         url: site.siteUrl,
         name: `${site.name} — ${site.role}`,
         inLanguage: "en",
+        dateModified: site.contentUpdatedAt,
         publisher: { "@id": PERSON_ID },
+      },
+
+      /* The page itself, dated. AI search engines weight freshness heavily and
+         read `dateModified` here before they parse any visible "last updated"
+         text — keep it fed from `contentUpdatedAt` so both agree. */
+      {
+        "@type": "WebPage",
+        "@id": PAGE_ID,
+        url: site.siteUrl,
+        name: `${site.name} — ${site.role}`,
+        inLanguage: "en",
+        dateModified: site.contentUpdatedAt,
+        isPartOf: { "@id": SITE_ID },
+        about: { "@id": PERSON_ID },
+        mainEntity: { "@id": BUSINESS_ID },
+      },
+
+      /* Mirrors the visible FAQ section one-to-one. Google no longer shows FAQ
+         rich results for a site like this, but ChatGPT, Perplexity and Claude
+         read FAQPage as ready-made question/answer pairs. */
+      {
+        "@type": "FAQPage",
+        "@id": FAQ_ID,
+        isPartOf: { "@id": PAGE_ID },
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
       },
 
       /* ProfessionalService is what makes the offering legible as a business

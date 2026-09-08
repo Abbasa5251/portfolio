@@ -79,10 +79,12 @@ export function About() {
             <Reveal direction="left" delay={0.1}>
               <div className="mt-6 space-y-4 text-lg leading-relaxed text-body">
                 <p>
-                  I&apos;m Abbas — a full-stack developer who has spent the last
-                  few years turning rough ideas into products people actually
-                  use. I work across the whole stack, so you get one person
-                  accountable for the interface, the API and the deploy.
+                  I&apos;m Abbas — a freelance full-stack developer based in
+                  Baramati, near Pune, India, working remotely with clients
+                  wherever they are. I&apos;ve spent the last few years turning
+                  rough ideas into products people actually use, across the
+                  whole stack, so you get one person accountable for the
+                  interface, the API and the deploy.
                 </p>
                 <p>
                   Most of my clients come to me with the same two worries: will

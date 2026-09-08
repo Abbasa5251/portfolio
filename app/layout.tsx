@@ -29,9 +29,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const title = `${site.name} — ${site.role}`;
-/** 154 chars — Google truncates search snippets around 160, so this lands whole. */
+/** 152 chars — Google truncates search snippets around 160, so this lands whole.
+    Leads with "freelance" and the location because those are the two words a
+    hiring query carries that the old copy left out. */
 const description =
-  "Freelance full-stack developer building fast, accessible web and mobile apps with React, Next.js and Python. Fixed scopes, weekly demos, on-time delivery.";
+  "Freelance full-stack developer in Pune, India, building fast, accessible web and mobile apps with React, Next.js and Python. Fixed scopes, weekly demos.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.siteUrl),

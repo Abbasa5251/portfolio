@@ -19,6 +19,10 @@ export function Hero() {
    * delay" and was essentially the whole LCP. The CSS keyframe starts on the
    * first frame after the stylesheet parses, so the text paints immediately.
    *
+   * The h1 and the lead paragraph — the two LCP candidates — use the
+   * transform-only `rise-solid` variant, because the browser does not count a
+   * paint at opacity 0 and the fade alone was costing ~1s of LCP.
+   *
    * Reduced motion is handled by the global media query rather than
    * `useReducedMotion`, because that hook also only resolves after hydration.
    */
@@ -66,7 +70,7 @@ export function Hero() {
 
           <h1
             {...line(2)}
-            className="animate-rise text-[clamp(2.5rem,7.2vw,4.25rem)] font-extrabold leading-[1.04]"
+            className="animate-rise-solid text-[clamp(2.5rem,7.2vw,4.25rem)] font-extrabold leading-[1.04]"
           >
             I build digital
             <br />
@@ -76,11 +80,11 @@ export function Hero() {
 
           <p
             {...line(3)}
-            className="mt-6 animate-rise text-lg leading-relaxed text-body"
+            className="mt-6 animate-rise-solid text-lg leading-relaxed text-body"
           >
-            I&apos;m a full-stack developer who turns ideas into fast, scalable
-            web and mobile apps — designed carefully, built to last, and shipped
-            on the date I promised.
+            I&apos;m a freelance full-stack developer in Pune, India, who turns
+            ideas into fast, scalable web and mobile apps — designed carefully,
+            built to last, and shipped on the date I promised.
           </p>
 
           <div

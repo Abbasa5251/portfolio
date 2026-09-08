@@ -6,6 +6,7 @@ import { Work } from "@/components/work";
 import { Process } from "@/components/process";
 import { Testimonials } from "@/components/testimonials";
 import { YouTube } from "@/components/youtube";
+import { Faq } from "@/components/faq";
 import { Contact } from "@/components/contact";
 import { SiteFooter } from "@/components/site-footer";
 import { SectionWave } from "@/components/section-wave";
@@ -14,7 +15,7 @@ import { visibleTestimonials } from "@/lib/site-config";
 /**
  * Section order is a deliberate funnel:
  *   who I am → what I sell → proof I can do it → how it'll go →
- *   social proof → a way to judge me for free → the ask.
+ *   social proof → a way to judge me for free → objections answered → the ask.
  *
  * Each section owns a pastel band, joined by wave dividers. The `from` colour
  * on every wave must match the band above it and `to` the band below.
@@ -52,7 +53,13 @@ export default function HomePage() {
         )}
 
         <YouTube />
-        <SectionWave from="mint" to="cream" variant={1} />
+        <SectionWave from="mint" to="peach" variant={1} />
+
+        {/* Plain-prose answers to the questions a prospect has before they
+            fill in the form. Also the page's most extractable passages for
+            AI search — see the note on `faqs` in site-config. */}
+        <Faq />
+        <SectionWave from="peach" to="cream" variant={2} />
 
         <Contact />
       </main>

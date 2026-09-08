@@ -121,6 +121,14 @@
    * hidden until their turn instead of flashing in and back out.
    */
   --animate-rise: rise 0.7s var(--ease-out-soft) backwards;
+  /**
+   * Transform-only twin of `rise` for the two LCP candidates themselves — the
+   * h1 and the lead paragraph. Chrome only records the largest paint once the
+   * element is visible, so an opacity ramp from 0 postpones LCP by the whole
+   * ramp; a Sept 2026 trace put 1.08s of "element render delay" on exactly
+   * that. Sliding without fading keeps the entrance and paints on frame one.
+   */
+  --animate-rise-solid: rise-solid 0.7s var(--ease-out-soft) backwards;
   /** Same reasoning for the hero illustration — it is the other above-the-fold
       candidate for the largest paint. */
   --animate-zoom-in: zoom-in 0.85s var(--ease-out-soft) backwards;
@@ -132,6 +140,14 @@
     }
     to {
       opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes rise-solid {
+    from {
+      transform: translateY(26px);
+    }
+    to {
       transform: none;
     }
   }
