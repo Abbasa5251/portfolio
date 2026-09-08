@@ -122,6 +122,11 @@ export function homePageSchema() {
         telephone: site.phone,
         founder: { "@id": PERSON_ID },
         image: `${site.siteUrl}/opengraph-image`,
+        /* The maskable app icon doubles as the business mark. Google lists
+           `logo` as recommended for any Organization and flags its absence as
+           a non-critical issue in the Rich Results Test. */
+        logo: `${site.siteUrl}/web-app-manifest-512x512.png`,
+        sameAs: sameAs(),
         priceRange: "₹₹",
         areaServed: {
           "@type": "Place",
@@ -150,7 +155,13 @@ export function homePageSchema() {
       },
 
       /* Each shipped project as a CreativeWork, so the portfolio items are
-         machine-readable rather than just decorative cards. */
+         machine-readable rather than just decorative cards.
+
+         Not SoftwareApplication: Google treats that type as a bid for the
+         "Software app" rich result and marks every entry without a price and
+         a star rating as invalid. These are case studies, not store listings,
+         and a case study has neither. CreativeWork carries the same facts with
+         no rich-result contract attached. */
       {
         "@type": "ItemList",
         name: "Selected work",
@@ -167,10 +178,11 @@ export function homePageSchema() {
             "@type": "ListItem",
             position: i + 1,
             item: {
-              "@type": "SoftwareApplication",
+              "@type": "CreativeWork",
               name: project.title,
               description: project.description,
-              applicationCategory: project.category,
+              genre: project.category,
+              keywords: project.tech.join(", "),
               ...(url ? { url } : {}),
               ...(preview ? { image: `${site.siteUrl}${preview}` } : {}),
               author: { "@id": PERSON_ID },
