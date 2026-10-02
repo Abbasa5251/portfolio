@@ -34,7 +34,7 @@ export function Work() {
           accent="work"
           /* Not "open-sourced" any more: client work ships without a public
              repo, which is exactly why githubUrl is nullable. */
-          description="A few things I've built end to end — interface, API and infrastructure. Each one shipped, deployed and running in production."
+          description="A few things I've built end to end — interface, API and infrastructure. Each one shipped and deployed, from production apps to one now in closed testing."
         />
 
         <Stagger
@@ -76,8 +76,13 @@ export function Work() {
 
                 {/* ---- Body ------------------------------------------- */}
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.09em] text-rose-ink">
+                  <p className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.09em] text-rose-ink">
                     {project.category}
+                    {project.status && (
+                      <span className="rounded-full bg-cream-deep px-2 py-0.5 text-[0.6875rem] tracking-normal normal-case text-ink-soft">
+                        {project.status}
+                      </span>
+                    )}
                   </p>
 
                   <h3 className="mt-2 font-display text-xl font-bold leading-snug transition-colors group-hover:text-rose-ink">

@@ -20,6 +20,25 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 5,
+    title: "Purrse",
+    category: "Mobile App",
+    status: "Closed testing",
+    description:
+      "A cat-themed expense tracker for cash, UPI and cards: log a spend in seconds, track card bills, transfers and IOUs, and see where the month went. Local-first and offline-ready, with encrypted sign-in and per-user cloud sync. Currently in closed testing on Google Play.",
+    tech: ["React Native", "Expo", "TypeScript", "Supabase", "Zustand"],
+    liveUrl: "https://purrse.in/",
+    githubUrl: null,
+    image: "",
+    phoneScreens: [
+      { src: "/purrse-add.webp", label: "Add Expense" },
+      { src: "/purrse-home.webp", label: "Record" },
+      { src: "/purrse-stats.webp", label: "Stats" },
+    ],
+    tone: "peach",
+    featured: true,
+  },
+  {
     id: 1,
     title: "Klassic Tile Adhesives",
     category: "Marketing Website",

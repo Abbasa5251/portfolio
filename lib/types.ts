@@ -11,6 +11,8 @@ export interface Project {
   title: string;
   /** Short category label shown above the title, e.g. "Video & Collaboration". */
   category: string;
+  /** Optional release stage shown as a pill beside the category, e.g. "Closed testing". */
+  status?: string;
   description: string;
   /**
    * The landscape screenshot. Ignored when `phoneScreens` is set — a mobile app
