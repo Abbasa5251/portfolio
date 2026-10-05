@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "Salon Ledger",
     category: "Mobile App",
     description:
-      "A local-first ledger for the salon counter: staff log services in seconds, the owner sees collections, margins and commissions behind a PIN. Runs entirely on-device — no server, no accounts.",
+      "A local-first ledger for the salon counter: staff log services in seconds, the owner sees collections and commissions. Runs entirely on-device.",
     tech: ["React Native", "Expo", "TypeScript", "SQLite"],
     liveUrl: null,
     githubUrl: null,
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     category: "Mobile App",
     status: "Closed testing",
     description:
-      "A cat-themed expense tracker for cash, UPI and cards: log a spend in seconds, track card bills, transfers and IOUs, and see where the month went. Local-first and offline-ready, with encrypted sign-in and per-user cloud sync. Currently in closed testing on Google Play.",
+      "A cat-themed expense tracker for cash, UPI and cards. Local-first, works offline and syncs securely. Now in closed testing on Google Play.",
     tech: ["React Native", "Expo", "TypeScript", "Supabase", "Zustand"],
     liveUrl: "https://purrse.in/",
     githubUrl: null,
